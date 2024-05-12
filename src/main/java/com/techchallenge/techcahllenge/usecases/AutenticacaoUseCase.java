@@ -1,4 +1,4 @@
-package com.techchallenge.techcahllenge.useCases;
+package com.techchallenge.techcahllenge.usecases;
 
 import com.techchallenge.techcahllenge.domain.entite.Cliente;
 
