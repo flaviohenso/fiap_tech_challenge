@@ -1,4 +1,4 @@
-package com.techchallenge.techcahllenge.domain.vo;
+package com.techchallenge.techchallenge.domain.vo;
 
 import java.util.UUID;
 
