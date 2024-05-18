@@ -1,6 +1,6 @@
-# fiap_tech_challenge
+# Fiap Tech Challenge
 
-# Gerar imagem docker da aplicação
+## Gerar imagem docker da aplicação
 
 1. Usar o comando do maven `mvn clean package -DskipTests` para gerar o arquivo .jar.
 2. Comando `docker compose build` para gerar a imagem da aplicação que será utilizada no docker compose.
