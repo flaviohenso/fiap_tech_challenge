@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: techchallenge
+  profiles:
+    active: ${ENVIRONMENT:local}
+
+server.port: 8080
