@@ -5,3 +5,10 @@ services:
     container_name: "mongodb"
     ports:
       - 27070:27017
+  app:
+    build: .
+    container_name: "docker-app"
+    depends_on:
+      - mongodb
+    ports:
+      - 8081:8081

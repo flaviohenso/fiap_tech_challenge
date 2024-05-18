@@ -1,0 +1,2 @@
+spring.data.mongodb.uri: mongodb://mongodb/docker-db
+server.port: 8081
