@@ -1,7 +1,7 @@
 package com.techchallenge.techchallenge.usecases;
 
 import com.techchallenge.techchallenge.domain.entity.Cozinheiro;
-import com.techchallenge.techchallenge.repositories.ICozinheiroRepository;
+import com.techchallenge.techchallenge.repositories.cozinheiro.ICozinheiroRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

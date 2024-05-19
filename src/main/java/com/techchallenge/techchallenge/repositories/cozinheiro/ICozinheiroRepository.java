@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.repositories;
+package com.techchallenge.techchallenge.repositories.cozinheiro;
 
 import com.techchallenge.techchallenge.domain.entity.Cozinheiro;
 
