@@ -11,7 +11,17 @@
 ```
 curl --location 'http://localhost:8081/api/cozinheiro'
 ```
+
 > [!NOTE]
 > A aplicação do docker vai subir na porta 8081. A aplicação quando sobe localmente sobe na porta 8080.
 
-Usei este [artigo do medium](https://salithachathuranga94.medium.com/deploy-rest-api-using-spring-boot-mongodb-and-docker-e7ab620b24d6) como referência para colocar a aplicação num docker.
+Usei
+este [artigo do medium](https://salithachathuranga94.medium.com/deploy-rest-api-using-spring-boot-mongodb-and-docker-e7ab620b24d6)
+como referência para colocar a aplicação num docker.
+
+## Swagger
+
+A aplicação gera automaticamente um swagger com todos os endpoints disponíveis.
+
+> [!NOTE]
+> O swagger é acessado em http://localhost:8081/swagger-ui/index.html
