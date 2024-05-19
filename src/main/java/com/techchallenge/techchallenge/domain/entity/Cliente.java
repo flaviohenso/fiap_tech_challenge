@@ -1,8 +1,8 @@
 package com.techchallenge.techchallenge.domain.entity;
 
-import java.util.UUID;
-
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 public class Cliente {
@@ -11,5 +11,5 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String email;
-    private String telefone;  
+    private String telefone;
 }

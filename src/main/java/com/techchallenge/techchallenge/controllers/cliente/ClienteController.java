@@ -1,7 +1,10 @@
-package com.techchallenge.techchallenge.controllers;
+package com.techchallenge.techchallenge.controllers.cliente;
 
+import com.techchallenge.techchallenge.controllers.cliente.dto.ClienteDtoMapper;
+import com.techchallenge.techchallenge.controllers.cliente.dto.UpsertClienteRequestDto;
 import com.techchallenge.techchallenge.domain.entity.Cliente;
 import com.techchallenge.techchallenge.usecases.ClienteUseCases;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,8 @@ public class ClienteController {
 
     final private ClienteUseCases clienteUseCases;
 
+    final private ClienteDtoMapper mapper;
+
     @GetMapping()
     public ResponseEntity<List<Cliente>> getAllClientes(
             @RequestParam(value = "cpf", required = false) String cpf
@@ -30,17 +35,20 @@ public class ClienteController {
         return ResponseEntity.ok().body(clienteUseCases.findById(uuid));
     }
 
+    @Operation(summary = "Cria novo cliente",
+            description = "Cria um novo cliente na base de dados. Em caso do CPF já existir retorna um erro.")
     @PostMapping
-    public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-        Cliente createdCliente = clienteUseCases.create(cliente);
+    public ResponseEntity<Cliente> createCliente(@RequestBody UpsertClienteRequestDto cliente) {
+        Cliente createdCliente = clienteUseCases.create(mapper.fromDto(cliente));
         return new ResponseEntity<>(createdCliente, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(
             @PathVariable("id") String id,
-            @RequestBody Cliente cliente
+            @RequestBody UpsertClienteRequestDto clienteDto
     ) {
+        var cliente = mapper.fromDto(clienteDto);
         cliente.setId(UUID.fromString(id));
         Cliente createdCliente = clienteUseCases.update(cliente);
         return new ResponseEntity<>(createdCliente, HttpStatus.OK);
