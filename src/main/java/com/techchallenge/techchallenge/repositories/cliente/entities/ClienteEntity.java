@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.repositories.cozinheiro.entity;
+package com.techchallenge.techchallenge.repositories.cliente.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,9 +11,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "cozinheiros")
-public class CozinheiroEntity {
+@Document(collection = "clientes")
+public class ClienteEntity {
     @Id
     private UUID id;
     private String nome;
+    private String cpf;
+    private String email;
+    private String telefone;
 }
