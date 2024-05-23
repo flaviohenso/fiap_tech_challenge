@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.techchallenge.techchallenge.aplication.adapters.usecases.AutenticacaoUseCase;
-import com.techchallenge.techchallenge.aplication.adapters.usecases.CampanhaUseCase;
-import com.techchallenge.techchallenge.domain.entity.Campanha;
-import com.techchallenge.techchallenge.domain.entity.Cliente;
+import com.techchallenge.techchallenge.aplication.usecases.AutenticacaoUseCase;
+import com.techchallenge.techchallenge.aplication.usecases.CampanhaUseCase;
+import com.techchallenge.techchallenge.core.domain.entity.Campanha;
+import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
 /**
  * CampanhaUseCaseTest

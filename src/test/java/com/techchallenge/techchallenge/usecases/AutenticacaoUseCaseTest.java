@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.techchallenge.techchallenge.aplication.adapters.usecases.AutenticacaoUseCase;
-import com.techchallenge.techchallenge.domain.entity.Cliente;
+import com.techchallenge.techchallenge.aplication.usecases.AutenticacaoUseCase;
+import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
 /**
  * AutenticacaoUseCaseTest
