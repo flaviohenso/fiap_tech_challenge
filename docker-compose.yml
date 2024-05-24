@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  tech-challenge:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    networks:
+      - tech-challenge
+    ports:
+      - 27070:27017
+    restart: always
+  app:
+    build: .
+    container_name: "docker-app"
+    depends_on:
+      - mongodb
+    networks:
+      - tech-challenge
+    ports:
+      - 8081:8081
+    restart: always
