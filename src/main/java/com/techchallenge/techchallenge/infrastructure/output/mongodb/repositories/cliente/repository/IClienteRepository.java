@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.repositories.cliente;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository;
 
 import java.util.List;
 import java.util.Optional;

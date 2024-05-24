@@ -1,14 +1,15 @@
-package com.techchallenge.techchallenge.infrastructure.repositories.cliente;
-
-import com.techchallenge.techchallenge.core.domain.entity.Cliente;
-import com.techchallenge.techchallenge.infrastructure.repositories.cliente.entities.ClienteEntityMapper;
-
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.techchallenge.techchallenge.core.domain.entity.Cliente;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
+
+import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor

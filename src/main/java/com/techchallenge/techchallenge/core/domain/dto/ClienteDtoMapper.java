@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.aplication.controllers.cliente.dto;
+package com.techchallenge.techchallenge.core.domain.dto;
 
 import org.mapstruct.Mapper;
 

@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.repositories.cozinheiro.entity;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

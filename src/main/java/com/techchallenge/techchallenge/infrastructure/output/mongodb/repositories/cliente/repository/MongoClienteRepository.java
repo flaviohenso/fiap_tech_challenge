@@ -1,9 +1,9 @@
-package com.techchallenge.techchallenge.infrastructure.repositories.cliente;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.techchallenge.techchallenge.infrastructure.repositories.cliente.entities.ClienteEntity;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.entities.ClienteEntity;
 
 import java.util.List;
 import java.util.UUID;

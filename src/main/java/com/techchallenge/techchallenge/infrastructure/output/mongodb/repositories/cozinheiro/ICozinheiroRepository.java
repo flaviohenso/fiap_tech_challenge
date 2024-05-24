@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.repositories.cozinheiro;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro;
 
 import java.util.List;
 

@@ -1,21 +1,26 @@
-package com.techchallenge.techchallenge.aplication.controllers;
+package com.techchallenge.techchallenge.infrastructure.input.controllers;
 
-import com.techchallenge.techchallenge.aplication.usecases.CozinheiroUseCases;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.techchallenge.techchallenge.aplication.usecases.CozinheiroUseCase;
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/cozinheiro")
 @AllArgsConstructor
 public class CozinheiroController {
 
-    final private CozinheiroUseCases cozinheiroUseCases;
+    final private CozinheiroUseCase cozinheiroUseCases;
 
     @GetMapping()
     public ResponseEntity<List<Cozinheiro>> getAllCozinheiros() {
