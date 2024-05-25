@@ -29,6 +29,7 @@ public class ClienteUseCases {
         var clientsWithSameCPF = repository.getByCPF(cliente.getCpf());
         if (!clientsWithSameCPF.isEmpty()) throw new CpfAlreadySavedException();
 
+
         cliente.setId(UUID.randomUUID());
         return repository.save(cliente);
     }
