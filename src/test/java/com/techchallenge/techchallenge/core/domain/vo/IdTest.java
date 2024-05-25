@@ -1,11 +1,9 @@
-package com.techchallenge.techchallenge.domain.vo;
+package com.techchallenge.techchallenge.core.domain.vo;
 
 import java.util.UUID;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import com.techchallenge.techchallenge.core.domain.vo.Id;
 
 public class IdTest {
 

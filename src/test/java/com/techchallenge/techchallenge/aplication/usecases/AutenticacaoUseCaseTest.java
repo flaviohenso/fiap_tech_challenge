@@ -1,11 +1,10 @@
-package com.techchallenge.techcahllenge.usecases;
+package com.techchallenge.techchallenge.aplication.usecases;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.techchallenge.techchallenge.aplication.usecases.AutenticacaoUseCase;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
 /**

@@ -18,9 +18,9 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping(value = "/api/cozinheiro")
 @AllArgsConstructor
-public class CozinheiroController {
+public class CozinheiroAdapter {
 
-    final private CozinheiroUseCase cozinheiroUseCases;
+    private CozinheiroUseCase cozinheiroUseCases;
 
     @GetMapping()
     public ResponseEntity<List<Cozinheiro>> getAllCozinheiros() {
