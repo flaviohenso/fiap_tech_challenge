@@ -2,8 +2,6 @@ package com.techchallenge.techchallenge.core.domain.entity;
 
 import java.util.UUID;
 
-import com.techchallenge.techchallenge.core.domain.vo.Id;
-
 public class Cozinheiro {
     private UUID id;
     private String nome;

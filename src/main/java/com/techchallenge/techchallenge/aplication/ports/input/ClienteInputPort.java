@@ -3,7 +3,7 @@ package com.techchallenge.techchallenge.aplication.ports.input;
 import java.util.List;
 import java.util.UUID;
 
-import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutPort;
+import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.aplication.usecases.ClienteUseCase;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 import com.techchallenge.techchallenge.core.domain.exceptions.CpfAlreadySavedException;
@@ -11,9 +11,9 @@ import com.techchallenge.techchallenge.core.domain.exceptions.NotFoundException;
 
 public class ClienteInputPort implements ClienteUseCase{
 
-    private ClienteOutPort clienteOutPort;
+    private ClienteOutputPort clienteOutPort;
 
-    public ClienteInputPort(ClienteOutPort clienteOutPort) {
+    public ClienteInputPort(ClienteOutputPort clienteOutPort) {
         this.clienteOutPort = clienteOutPort;
     }
 

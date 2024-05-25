@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.input.controllers;
+package com.techchallenge.techchallenge.infrastructure.input.adapter;
 
 import java.util.List;
 

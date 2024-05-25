@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.techchallenge.techchallenge.aplication.ports.input.ClienteInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.CozinheiroInputPort;
-import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutPort;
+import com.techchallenge.techchallenge.aplication.ports.input.PagamentoInputPort;
+import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.ClienteMongoAdapter;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.ClienteRepository;
@@ -16,11 +17,16 @@ import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositorie
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.repository.CozinheiroRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.repository.ICozinheiroRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.repository.MongoCozinheiroRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.PagamentoMongoAdapter;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.mapper.PagamentoEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.IPagamentoRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.MongoPagamentoRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.PagamentoRepository;
 
 @Configuration
 public class AppConfig {
 
-    private final ClienteOutPort clienteMongoAdapter;
+    private final ClienteOutputPort clienteMongoAdapter;
     private final IClienteRepository clienteRepository;
     private final ClienteEntityMapper clienteEntityMapper;
     private final MongoClienteRepository mongoClienteRepository;
@@ -30,9 +36,15 @@ public class AppConfig {
     private final CozinheiroEntityMapper cozinheiroEntityMapper;
     private final MongoCozinheiroRepository mongoCozinheiroRepository;
 
+    private final PagamentoMongoAdapter pagamentoMongoAdapter;
+    private final IPagamentoRepository pagamentoRepository;
+    private final PagamentoEntityMapper pagamentoEntityMapper;
+    private final MongoPagamentoRepository mongoPagamentoRepository;
+
     public AppConfig(
         ClienteEntityMapper clienteEntityMapper, MongoClienteRepository mongoClienteRepository, IClienteRepository clienteRepository,
-        CozinheiroEntityMapper cozinheiroEntityMapper, MongoCozinheiroRepository mongoCozinheiroRepository, ICozinheiroRepository cozinheiroRepository) {
+        CozinheiroEntityMapper cozinheiroEntityMapper, MongoCozinheiroRepository mongoCozinheiroRepository, ICozinheiroRepository cozinheiroRepository,
+        PagamentoEntityMapper pagamentoEntityMapper, MongoPagamentoRepository mongoPagamentoRepository, IPagamentoRepository pagamentoRepository) {
         this.clienteRepository = clienteRepository;
         this.clienteEntityMapper = clienteEntityMapper;
         this.mongoClienteRepository = mongoClienteRepository;
@@ -42,6 +54,11 @@ public class AppConfig {
         this.cozinheiroEntityMapper = cozinheiroEntityMapper;
         this.mongoCozinheiroRepository = mongoCozinheiroRepository;
         this.cozinheiroMongoAdapter = new CozinheiroMongoAdapter((CozinheiroRepository) this.cozinheiroRepository);
+
+        this.pagamentoRepository = pagamentoRepository;
+        this.pagamentoEntityMapper = pagamentoEntityMapper;
+        this.mongoPagamentoRepository = mongoPagamentoRepository;
+        this.pagamentoMongoAdapter = new PagamentoMongoAdapter((PagamentoRepository) this.pagamentoRepository);
     }
 
     @Bean
@@ -52,5 +69,10 @@ public class AppConfig {
     @Bean
     public CozinheiroInputPort cozinheiroInputPort() {
         return new CozinheiroInputPort(this.cozinheiroMongoAdapter);
+    }
+
+    @Bean
+    public PagamentoInputPort pagamentoInputPort() {
+        return new PagamentoInputPort(this.pagamentoMongoAdapter);
     }
 }

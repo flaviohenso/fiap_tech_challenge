@@ -1,5 +1,6 @@
 package com.techchallenge.techchallenge.aplication.usecases;
 
-public class PreparacaoUseCase {
+public interface PreparacaoUseCase {
+
     
 }
