@@ -3,7 +3,7 @@ package com.techchallenge.techchallenge.aplication.ports.input;
 import java.util.List;
 import java.util.UUID;
 
-import com.techchallenge.techchallenge.aplication.ports.output.CozinheiroOutPort;
+import com.techchallenge.techchallenge.aplication.ports.output.CozinheiroOutputPort;
 import com.techchallenge.techchallenge.aplication.usecases.CozinheiroUseCase;
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
 
@@ -14,9 +14,9 @@ import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
  */
 public class CozinheiroInputPort implements CozinheiroUseCase{
 
-    private CozinheiroOutPort repository;
+    private CozinheiroOutputPort repository;
 
-    public CozinheiroInputPort(CozinheiroOutPort repository) {
+    public CozinheiroInputPort(CozinheiroOutputPort repository) {
         this.repository = repository;
     }
 

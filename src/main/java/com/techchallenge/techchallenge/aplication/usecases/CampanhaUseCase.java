@@ -3,7 +3,7 @@ package com.techchallenge.techchallenge.aplication.usecases;
 import com.techchallenge.techchallenge.core.domain.entity.Campanha;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
-public class CampanhaUseCase {
+public abstract class CampanhaUseCase {
 
     private AutenticacaoUseCase autenticacaoUseCase;
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
 
-public interface CozinheiroOutPort {
+public interface CozinheiroOutputPort {
 
     public List<Cozinheiro> getAll();
     public Cozinheiro create(Cozinheiro cozinheiro) ;    

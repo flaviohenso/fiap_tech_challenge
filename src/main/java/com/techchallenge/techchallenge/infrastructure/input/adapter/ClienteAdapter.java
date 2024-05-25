@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.input.controllers;
+package com.techchallenge.techchallenge.infrastructure.input.adapter;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techchallenge.techchallenge.aplication.usecases.ClienteUseCase;
 import com.techchallenge.techchallenge.core.domain.dto.ClienteDtoMapper;
-import com.techchallenge.techchallenge.core.domain.dto.UpsertClienteRequestDto;
+import com.techchallenge.techchallenge.core.domain.dto.ClienteRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,9 +26,9 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping(value = "/api/clientes")
 public class ClienteAdapter {
 
-    final private ClienteUseCase clienteUseCase;
+    private final ClienteUseCase clienteUseCase;
 
-    final private ClienteDtoMapper mapper;
+    private final ClienteDtoMapper mapper;
 
     public ClienteAdapter(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
         this.clienteUseCase = clienteUseCase;
@@ -51,7 +51,7 @@ public class ClienteAdapter {
     @Operation(summary = "Cria novo cliente",
             description = "Cria um novo cliente na base de dados. Em caso do CPF já existir retorna um erro.")
     @PostMapping
-    public ResponseEntity<Cliente> createCliente(@RequestBody UpsertClienteRequestDto cliente) {
+    public ResponseEntity<Cliente> createCliente(@RequestBody ClienteRequestDto cliente) {
         Cliente createdCliente = clienteUseCase.create(mapper.fromDto(cliente));
         return new ResponseEntity<>(createdCliente, HttpStatus.CREATED);
     }
@@ -59,7 +59,7 @@ public class ClienteAdapter {
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(
             @PathVariable("id") String id,
-            @RequestBody UpsertClienteRequestDto clienteDto
+            @RequestBody ClienteRequestDto clienteDto
     ) {
         var cliente = mapper.fromDto(clienteDto);
         cliente.setId(UUID.fromString(id));

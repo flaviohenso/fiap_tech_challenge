@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutPort;
+import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.ClienteRepository;
 
 @Component
-public class ClienteMongoAdapter implements ClienteOutPort{
+public class ClienteMongoAdapter implements ClienteOutputPort{
     
     private ClienteRepository repository;
 
