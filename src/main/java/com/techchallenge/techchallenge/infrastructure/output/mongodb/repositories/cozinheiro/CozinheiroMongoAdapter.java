@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.techchallenge.techchallenge.aplication.ports.output.CozinheiroOutPort;
+import com.techchallenge.techchallenge.aplication.ports.output.CozinheiroOutputPort;
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.repository.CozinheiroRepository;
 
 @Component
-public class CozinheiroMongoAdapter implements CozinheiroOutPort{
+public class CozinheiroMongoAdapter implements CozinheiroOutputPort{
 
     private CozinheiroRepository repository;
 

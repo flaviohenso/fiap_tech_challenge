@@ -2,7 +2,7 @@ package com.techchallenge.techchallenge.aplication.usecases;
 
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
-public class AutenticacaoUseCase {
+public abstract class AutenticacaoUseCase {
 
     /**
      * Método responsável por autenticar o cliente

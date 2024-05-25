@@ -1,5 +1,5 @@
 package com.techchallenge.techchallenge.aplication.usecases;
 
-public class EntregaUseCase {
+public interface EntregaUseCase {
     
 }

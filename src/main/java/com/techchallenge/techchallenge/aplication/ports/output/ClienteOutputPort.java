@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
-public interface ClienteOutPort {
+public interface ClienteOutputPort {
 
     public List<Cliente> getAll();
 
