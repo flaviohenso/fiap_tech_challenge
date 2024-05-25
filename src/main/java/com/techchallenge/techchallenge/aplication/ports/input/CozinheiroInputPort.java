@@ -3,21 +3,20 @@ package com.techchallenge.techchallenge.aplication.ports.input;
 import java.util.List;
 import java.util.UUID;
 
+import com.techchallenge.techchallenge.aplication.ports.output.CozinheiroOutPort;
 import com.techchallenge.techchallenge.aplication.usecases.CozinheiroUseCase;
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.ICozinheiroRepository;
 
 /**
  * ClienteInputPort
  * 
  * This class represents the input port for the Cliente entity.
  */
-//@service
 public class CozinheiroInputPort implements CozinheiroUseCase{
 
-    final private ICozinheiroRepository repository;
+    private CozinheiroOutPort repository;
 
-    public CozinheiroInputPort(ICozinheiroRepository repository) {
+    public CozinheiroInputPort(CozinheiroOutPort repository) {
         this.repository = repository;
     }
 

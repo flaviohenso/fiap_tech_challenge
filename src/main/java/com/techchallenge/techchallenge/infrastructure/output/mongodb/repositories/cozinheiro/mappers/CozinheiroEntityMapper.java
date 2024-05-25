@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.Mappers;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.mappers;
 
 import org.mapstruct.Mapper;
 
