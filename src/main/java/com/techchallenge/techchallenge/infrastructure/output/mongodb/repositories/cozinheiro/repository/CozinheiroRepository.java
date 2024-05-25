@@ -1,11 +1,11 @@
-package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.repository;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.techchallenge.techchallenge.core.domain.entity.Cozinheiro;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.Mappers.CozinheiroEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cozinheiro.mappers.CozinheiroEntityMapper;
 
 import lombok.AllArgsConstructor;
 

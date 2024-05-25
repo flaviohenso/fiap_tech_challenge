@@ -24,13 +24,13 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping(value = "/api/clientes")
-public class ClienteController {
+public class ClienteAdapter {
 
     final private ClienteUseCase clienteUseCase;
 
     final private ClienteDtoMapper mapper;
 
-    public ClienteController(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
+    public ClienteAdapter(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
         this.clienteUseCase = clienteUseCase;
         this.mapper = mapper;
     }

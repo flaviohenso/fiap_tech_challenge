@@ -3,7 +3,7 @@ package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositori
 import org.mapstruct.Mapper;
 
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.entities.ClienteEntity;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.entity.ClienteEntity;
 
 @Mapper(componentModel = "spring")
 public interface ClienteEntityMapper {

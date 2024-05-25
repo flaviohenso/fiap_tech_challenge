@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.entities;
+package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.entity;
 
 import java.util.UUID;
 
