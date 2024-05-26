@@ -1,7 +1,7 @@
 package com.techchallenge.techchallenge.core.domain.dto;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 public class PagamentoResponseDto {
     
@@ -11,18 +11,20 @@ public class PagamentoResponseDto {
     private Date dataPagamento;
     private String idCliente;
     private String canal;
+    private String status;
 
     public PagamentoResponseDto() {
     }
 
     public PagamentoResponseDto(String numeroPedido, BigDecimal valor, String observacao, Date dataPagamento,
-     String idCliente, String canal) {
+     String idCliente, String canal, String status) {
         this.numeroPedido = numeroPedido;
         this.valor = valor;
         this.observacao = observacao;
         this.dataPagamento = dataPagamento;
         this.idCliente = idCliente;
         this.canal = canal;
+        this.status = status;
     }
 
     public String getNumeroPedido() {
@@ -49,6 +51,10 @@ public class PagamentoResponseDto {
         return this.canal;
     }
 
+    public String getStatus() {
+        return this.status;
+    }
+
     public void setNumeroPedido(String numeroPedido) {
         this.numeroPedido = numeroPedido;
     }
@@ -73,10 +79,15 @@ public class PagamentoResponseDto {
         this.canal = canal;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //equals and hashcode
     public boolean equals(final Object o) {
         if (o == this) return true;
-        if (!(o instanceof PagamentoRequestDto)) return false;
-        final PagamentoRequestDto other = (PagamentoRequestDto) o;
+        if (!(o instanceof PagamentoResponseDto)) return false;
+        final PagamentoResponseDto other = (PagamentoResponseDto) o;
         if (!other.canEqual((Object) this)) return false;
         final Object this$numeroPedido = this.getNumeroPedido();
         final Object other$numeroPedido = other.getNumeroPedido();
@@ -99,11 +110,14 @@ public class PagamentoResponseDto {
         final Object this$canal = this.getCanal();
         final Object other$canal = other.getCanal();
         if (this$canal == null ? other$canal != null : !this$canal.equals(other$canal)) return false;
+        final Object this$status = this.getStatus();
+        final Object other$status = other.getStatus();
+        if (this$status == null ? other$status != null : !this$status.equals(other$status)) return false;
         return true;
     }
 
     protected boolean canEqual(final Object other) {
-        return other instanceof PagamentoRequestDto;
+        return other instanceof PagamentoResponseDto;
     }
 
     public int hashCode() {
@@ -121,6 +135,9 @@ public class PagamentoResponseDto {
         result = result * PRIME + ($idCliente == null ? 43 : $idCliente.hashCode());
         final Object $canal = this.getCanal();
         result = result * PRIME + ($canal == null ? 43 : $canal.hashCode());
+        final Object $status = this.getStatus();
+        result = result * PRIME + ($status == null ? 43 : $status.hashCode());
         return result;
     }
+
 }
