@@ -1,6 +1,7 @@
 package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -24,8 +25,10 @@ public class PagamentoRepository implements IPagamentoRepository {
 
     @Override
     public Pagamento create(Pagamento pagamento) {
-        return mapper.fromEntity(
-                repository.save(mapper.toEntity(pagamento))
-        );
+        return Optional.of(pagamento)
+                .map(mapper::toEntity)
+                .map(repository::save)
+                .map(mapper::fromEntity)
+                .orElse(null);
     }
 }
