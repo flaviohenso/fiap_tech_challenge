@@ -1,5 +1,23 @@
 # Fiap Tech Challenge
 
+## Event storming
+
+![alt text](img/image.png)
+
+![alt text](img/image-1.png)
+
+![alt text](img/image-2.png)
+
+![alt text](<img/Event Storm - Quadro 2-1.jpg>)
+
+![alt text](<img/Event Storm - Quadro 4.jpg>)
+
+![alt text](<img/Event Storm - Quadro 3.jpg>)
+
+![alt text](<img/Event Storm - Quadro 5.jpg>)
+
+![alt text](<img/Event Storm - Quadro 6.jpg>)
+
 ## Gerar imagem docker da aplicação
 
 1. Usar o comando do maven `mvn clean package -DskipTests` para gerar o arquivo .jar.
