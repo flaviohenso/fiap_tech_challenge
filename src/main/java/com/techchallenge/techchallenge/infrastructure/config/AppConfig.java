@@ -1,10 +1,13 @@
 package com.techchallenge.techchallenge.infrastructure.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.techchallenge.techchallenge.aplication.ports.input.ClienteInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.CozinheiroInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.PagamentoInputPort;
-
 import com.techchallenge.techchallenge.aplication.ports.input.PedidoInputPort;
+import com.techchallenge.techchallenge.aplication.ports.input.ProdutoInputPort;
 import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.aplication.ports.output.PedidoOutputPort;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.ClienteMongoAdapter;
@@ -23,8 +26,11 @@ import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositorie
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.MongoPagamentoRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.PagamentoRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.PedidoEntityMapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.produto.ProdutoMongoAdapter;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.produto.mapper.ProdutoEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.produto.repository.IProdutoRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.produto.repository.MongoProdutoRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.produto.repository.ProdutoRepository;
 
 @Configuration
 public class AppConfig {
@@ -47,6 +53,10 @@ public class AppConfig {
     private final PedidoOutputPort pedidoMongoAdapter;
     private final PedidoEntityMapper pedidoEntityMapper;
 
+    private final ProdutoMongoAdapter produtoMongoAdapter;
+    private final IProdutoRepository produtoRepository;
+    private final ProdutoEntityMapper produtoEntityMapper;
+    private final MongoProdutoRepository mongoProdutoRepository;
 
     public AppConfig(
             ClienteEntityMapper clienteEntityMapper,
@@ -59,7 +69,10 @@ public class AppConfig {
             MongoPagamentoRepository mongoPagamentoRepository,
             IPagamentoRepository pagamentoRepository,
             PedidoOutputPort pedidoMongoAdapter,
-            PedidoEntityMapper pedidoEntityMapper) {
+            PedidoEntityMapper pedidoEntityMapper,
+            ProdutoEntityMapper produtoEntityMapper,
+            MongoProdutoRepository mongoProdutoRepository,
+            IProdutoRepository produtoRepository) {
 
         this.clienteRepository = clienteRepository;
         this.clienteEntityMapper = clienteEntityMapper;
@@ -78,6 +91,11 @@ public class AppConfig {
 
         this.pedidoMongoAdapter = pedidoMongoAdapter;
         this.pedidoEntityMapper = pedidoEntityMapper;
+
+        this.produtoRepository = produtoRepository;
+        this.produtoEntityMapper = produtoEntityMapper;
+        this.mongoProdutoRepository = mongoProdutoRepository;
+        this.produtoMongoAdapter = new ProdutoMongoAdapter((ProdutoRepository) this.produtoRepository);
     }
 
     @Bean
@@ -98,5 +116,10 @@ public class AppConfig {
     @Bean
     public PedidoInputPort pedidoInputPort() {
         return new PedidoInputPort(this.pedidoMongoAdapter);
+    }
+
+    @Bean
+    public ProdutoInputPort produtoInputPort() {
+        return new ProdutoInputPort(this.produtoMongoAdapter);
     }
 }
