@@ -1,12 +1,11 @@
 package com.techchallenge.techchallenge.infrastructure.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import com.techchallenge.techchallenge.aplication.ports.input.ClienteInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.CozinheiroInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.PagamentoInputPort;
+import com.techchallenge.techchallenge.aplication.ports.input.PedidoInputPort;
 import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
+import com.techchallenge.techchallenge.aplication.ports.output.PedidoOutputPort;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.ClienteMongoAdapter;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.ClienteRepository;
@@ -22,6 +21,9 @@ import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositorie
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.IPagamentoRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.MongoPagamentoRepository;
 import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pagamento.repository.PagamentoRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.PedidoEntityMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
@@ -41,10 +43,22 @@ public class AppConfig {
     private final PagamentoEntityMapper pagamentoEntityMapper;
     private final MongoPagamentoRepository mongoPagamentoRepository;
 
+    private final PedidoOutputPort pedidoMongoAdapter;
+    private final PedidoEntityMapper pedidoEntityMapper;
+
+
     public AppConfig(
-        ClienteEntityMapper clienteEntityMapper, MongoClienteRepository mongoClienteRepository, IClienteRepository clienteRepository,
-        CozinheiroEntityMapper cozinheiroEntityMapper, MongoCozinheiroRepository mongoCozinheiroRepository, ICozinheiroRepository cozinheiroRepository,
-        PagamentoEntityMapper pagamentoEntityMapper, MongoPagamentoRepository mongoPagamentoRepository, IPagamentoRepository pagamentoRepository) {
+            ClienteEntityMapper clienteEntityMapper,
+            MongoClienteRepository mongoClienteRepository,
+            IClienteRepository clienteRepository,
+            CozinheiroEntityMapper cozinheiroEntityMapper,
+            MongoCozinheiroRepository mongoCozinheiroRepository,
+            ICozinheiroRepository cozinheiroRepository,
+            PagamentoEntityMapper pagamentoEntityMapper,
+            MongoPagamentoRepository mongoPagamentoRepository,
+            IPagamentoRepository pagamentoRepository,
+            PedidoOutputPort pedidoMongoAdapter,
+            PedidoEntityMapper pedidoEntityMapper) {
         this.clienteRepository = clienteRepository;
         this.clienteEntityMapper = clienteEntityMapper;
         this.mongoClienteRepository = mongoClienteRepository;
@@ -59,6 +73,9 @@ public class AppConfig {
         this.pagamentoEntityMapper = pagamentoEntityMapper;
         this.mongoPagamentoRepository = mongoPagamentoRepository;
         this.pagamentoMongoAdapter = new PagamentoMongoAdapter((PagamentoRepository) this.pagamentoRepository);
+
+        this.pedidoMongoAdapter = pedidoMongoAdapter;
+        this.pedidoEntityMapper = pedidoEntityMapper;
     }
 
     @Bean
@@ -74,5 +91,10 @@ public class AppConfig {
     @Bean
     public PagamentoInputPort pagamentoInputPort() {
         return new PagamentoInputPort(this.pagamentoMongoAdapter);
+    }
+
+    @Bean
+    public PedidoInputPort pedidoInputPort() {
+        return new PedidoInputPort(this.pedidoMongoAdapter);
     }
 }
