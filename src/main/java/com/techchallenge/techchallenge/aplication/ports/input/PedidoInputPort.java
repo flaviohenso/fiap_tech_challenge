@@ -6,6 +6,7 @@ import com.techchallenge.techchallenge.core.domain.entity.pedido.Pedido;
 import com.techchallenge.techchallenge.core.domain.entity.pedido.PedidoStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class PedidoInputPort implements PedidoUseCase {
@@ -22,5 +23,10 @@ public class PedidoInputPort implements PedidoUseCase {
         pedido.setCreatedAt(LocalDateTime.now());
         pedido.setStatus(PedidoStatus.INICIAL);
         return repository.criarPedido(pedido);
+    }
+
+    @Override
+    public List<Pedido> findAll(String status) {
+        return repository.findAll(status);
     }
 }

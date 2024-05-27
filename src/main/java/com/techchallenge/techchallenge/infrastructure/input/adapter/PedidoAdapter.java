@@ -8,10 +8,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/pedidos")
@@ -27,5 +26,13 @@ public class PedidoAdapter {
     public ResponseEntity<Pedido> create(@RequestBody CriarPedidoRequestDto dto) {
         Pedido pedido = pedidoUseCase.criarPedido(mapper.fromDto(dto));
         return new ResponseEntity<>(pedido, HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Listar todos os pedido", description = "Lista todos os pedidos passando um status como parâmetro opcional")
+    @GetMapping()
+    public ResponseEntity<List<Pedido>> getPedidos(
+            @RequestParam(value = "status", required = false) String status
+    ) {
+        return ResponseEntity.ok().body(pedidoUseCase.findAll(status));
     }
 }
