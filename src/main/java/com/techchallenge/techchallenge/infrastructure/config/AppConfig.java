@@ -3,6 +3,7 @@ package com.techchallenge.techchallenge.infrastructure.config;
 import com.techchallenge.techchallenge.aplication.ports.input.ClienteInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.CozinheiroInputPort;
 import com.techchallenge.techchallenge.aplication.ports.input.PagamentoInputPort;
+
 import com.techchallenge.techchallenge.aplication.ports.input.PedidoInputPort;
 import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.aplication.ports.output.PedidoOutputPort;
@@ -59,6 +60,7 @@ public class AppConfig {
             IPagamentoRepository pagamentoRepository,
             PedidoOutputPort pedidoMongoAdapter,
             PedidoEntityMapper pedidoEntityMapper) {
+
         this.clienteRepository = clienteRepository;
         this.clienteEntityMapper = clienteEntityMapper;
         this.mongoClienteRepository = mongoClienteRepository;

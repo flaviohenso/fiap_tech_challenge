@@ -26,9 +26,9 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping(value = "/api/clientes")
 public class ClienteAdapter {
 
-    private final ClienteUseCase clienteUseCase;
+    private ClienteUseCase clienteUseCase;
 
-    private final ClienteDtoMapper mapper;
+    private ClienteDtoMapper mapper;
 
     public ClienteAdapter(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
         this.clienteUseCase = clienteUseCase;

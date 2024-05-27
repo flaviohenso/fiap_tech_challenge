@@ -8,6 +8,5 @@ import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositorie
 @Mapper(componentModel = "spring")
 public interface PagamentoEntityMapper {
     PagamentoEntity toEntity(Pagamento pagamento);
-
     Pagamento fromEntity(PagamentoEntity destinatio);
 }

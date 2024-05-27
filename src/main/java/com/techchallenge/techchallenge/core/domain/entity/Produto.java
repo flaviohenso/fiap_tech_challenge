@@ -1,12 +1,12 @@
 package com.techchallenge.techchallenge.core.domain.entity;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import com.techchallenge.techchallenge.core.domain.vo.Categoria;
-import com.techchallenge.techchallenge.core.domain.vo.Id;
 
 public class Produto {
-    private Id id;
+    private UUID id;
     private String nome;
     private BigDecimal preco;
     private String descricao;
@@ -16,16 +16,16 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(Id id, String nome, BigDecimal preco, String descricao, String imagem, Categoria categoria) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.descricao = descricao;
-        this.imagem = imagem;
-        this.categoria = categoria;
+    public Produto(Builder builder) {
+        this.id = builder.id;
+        this.nome = builder.nome;
+        this.preco = builder.preco;
+        this.descricao = builder.descricao;
+        this.imagem = builder.imagem;
+        this.categoria = builder.categoria;
     }
 
-    public Id getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -49,7 +49,7 @@ public class Produto {
         return categoria;
     }
 
-    public void setId(Id id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -99,4 +99,55 @@ public class Produto {
         return result;
     }
 
+    public static class Builder {
+        private UUID id;
+        private String nome;
+        private BigDecimal preco;
+        private String descricao;
+        private String imagem;
+        private Categoria categoria;
+
+        public Builder withId(UUID id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withNome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder withPreco(BigDecimal preco) {
+            this.preco = preco;
+            return this;
+        }
+
+        public Builder withDescricao(String descricao) {
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder withImagem(String imagem) {
+            this.imagem = imagem;
+            return this;
+        }
+
+        public Builder withCategoria(Categoria categoria) {
+            this.categoria = categoria;
+            return this;
+        }
+
+        public Builder withIdRadom(String id) {
+            if (id == null) {
+                this.id = UUID.randomUUID();
+            } else {
+                this.id = UUID.fromString(id);
+            }
+            return this;
+        }
+
+        public Produto build() {
+            return new Produto(this);
+        }
+    }
 }
