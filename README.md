@@ -2,6 +2,9 @@
 
 ## Event storming
 
+
+Link para o [Miro](https://miro.com/app/board/uXjVKWJMoGM=/?share_link_id=84755743046)
+
 ![alt text](Documents/image.png)
 
 ![alt text](Documents/image-1.png)

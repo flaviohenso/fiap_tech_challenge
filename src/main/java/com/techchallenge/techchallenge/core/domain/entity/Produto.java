@@ -137,12 +137,8 @@ public class Produto {
             return this;
         }
 
-        public Builder withIdRadom(String id) {
-            if (id == null) {
-                this.id = UUID.randomUUID();
-            } else {
-                this.id = UUID.fromString(id);
-            }
+        public Builder withIdRadom() {
+            this.id = UUID.randomUUID();
             return this;
         }
 

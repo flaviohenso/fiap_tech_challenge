@@ -14,8 +14,7 @@ services:
       - 27070:27017
     restart: always
   app:
-    build: .
-    #image: pedrogimenezsilva/fiap_tech_challenge:latest
+    image: pedrogimenezsilva/fiap_tech_challenge:v1.0.0
     container_name: "docker-app"
     depends_on:
       - mongodb

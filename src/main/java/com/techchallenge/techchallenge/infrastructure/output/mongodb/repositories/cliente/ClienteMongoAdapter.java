@@ -8,44 +8,45 @@ import org.springframework.stereotype.Component;
 
 import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.ClienteRepository;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.MongoClienteRepository;
+
+import lombok.AllArgsConstructor;
 
 @Component
+@AllArgsConstructor
 public class ClienteMongoAdapter implements ClienteOutputPort{
-    
-    private ClienteRepository repository;
 
-    public ClienteMongoAdapter(ClienteRepository repository) {
-        this.repository = repository;
-    }
+    private final ClienteEntityMapper mapper;
+
+    private final MongoClienteRepository repository;   
 
     @Override
     public List<Cliente> getAll() {
-        var clientes = repository.getAll();
-        return clientes;
+        return repository.findAll().stream().map(mapper::fromEntity).toList();
     }
 
     @Override
     public Optional<Cliente> getById(UUID id) {
-        var optional = repository.getById(id);
-        return optional;
+        return repository.findById(id).map(mapper::fromEntity);
     }
 
     @Override
     public Cliente save(Cliente cliente) {
-        var saved = repository.save(cliente);
-        return saved;
+        return Optional.of(cliente)
+                .map(mapper::toEntity)
+                .map(repository::save)
+                .map(mapper::fromEntity)
+                .orElse(null);
     }
 
     @Override
     public void delete(UUID uuid) {
-        repository.delete(uuid);
+        repository.deleteById(uuid);
     }
 
     @Override
     public List<Cliente> getByCPF(String cpf) {
-        var clientes = repository.getByCPF(cpf);
-        return clientes;
+        return repository.findByCpf(cpf).stream().map(mapper::fromEntity).toList();
     }
-
 }

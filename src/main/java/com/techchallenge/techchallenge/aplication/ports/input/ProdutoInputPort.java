@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import com.techchallenge.techchallenge.aplication.ports.output.ProdutoOutputPort;
 import com.techchallenge.techchallenge.aplication.usecases.ProdutoUseCase;
-import com.techchallenge.techchallenge.core.domain.dto.ProdutoRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.Produto;
+import com.techchallenge.techchallenge.infrastructure.input.dto.produto.ProdutoRequestDto;
 
 public class ProdutoInputPort implements ProdutoUseCase{
 
@@ -50,7 +50,7 @@ public class ProdutoInputPort implements ProdutoUseCase{
                 .withPreco(produtoRequestDto.getPreco())
                 .withCategoria(produtoRequestDto.getCategoria())
                 .withImagem(produtoRequestDto.getImagem())
-                .withIdRadom(produtoRequestDto.getId())
+                .withIdRadom()
                 .build();
     }
     

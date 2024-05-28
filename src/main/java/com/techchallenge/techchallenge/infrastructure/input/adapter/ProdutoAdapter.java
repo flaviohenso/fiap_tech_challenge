@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techchallenge.techchallenge.aplication.usecases.ProdutoUseCase;
-import com.techchallenge.techchallenge.core.domain.dto.ProdutoRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.Produto;
+import com.techchallenge.techchallenge.infrastructure.input.dto.produto.ProdutoRequestDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 

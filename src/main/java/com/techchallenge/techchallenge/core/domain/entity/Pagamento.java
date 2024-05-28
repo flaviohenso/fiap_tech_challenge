@@ -19,9 +19,10 @@ public class Pagamento {
     private Date dataPagamento;
     private String idCliente;
     private String canal;
-    private StatusPagamento status;
+    private StatusPagamento status = StatusPagamento.PENDENTE;
 
     public Pagamento() {
+        this.id = UUID.randomUUID();
     }
 
     private Pagamento(Builder builder) {

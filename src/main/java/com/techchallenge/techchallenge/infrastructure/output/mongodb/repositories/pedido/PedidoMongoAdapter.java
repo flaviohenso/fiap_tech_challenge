@@ -2,7 +2,10 @@ package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositori
 
 import com.techchallenge.techchallenge.aplication.ports.output.PedidoOutputPort;
 import com.techchallenge.techchallenge.core.domain.entity.pedido.Pedido;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.entities.PedidoEntity;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.entity.PedidoEntity;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.mapper.PedidoEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.pedido.repository.PedidoMongoRepository;
+
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,11 @@
 package com.techchallenge.techchallenge.infrastructure.input.adapter;
 
 import com.techchallenge.techchallenge.aplication.usecases.PedidoUseCase;
-import com.techchallenge.techchallenge.core.domain.dto.PedidoDtoMapper;
-import com.techchallenge.techchallenge.core.domain.dto.pedido.CriarPedidoRequestDto;
-import com.techchallenge.techchallenge.core.domain.dto.pedido.UpdatePedidoStatusRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.pedido.Pedido;
+import com.techchallenge.techchallenge.infrastructure.input.dto.pedido.CriarPedidoRequestDto;
+import com.techchallenge.techchallenge.infrastructure.input.dto.pedido.PedidoDtoMapper;
+import com.techchallenge.techchallenge.infrastructure.input.dto.pedido.UpdatePedidoStatusRequestDto;
+
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

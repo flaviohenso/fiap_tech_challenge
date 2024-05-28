@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techchallenge.techchallenge.aplication.usecases.ClienteUseCase;
-import com.techchallenge.techchallenge.core.domain.dto.ClienteDtoMapper;
-import com.techchallenge.techchallenge.core.domain.dto.ClienteRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
+import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteDtoMapper;
+import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteRequestDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 
