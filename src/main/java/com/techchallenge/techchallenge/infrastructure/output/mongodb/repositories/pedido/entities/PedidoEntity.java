@@ -20,8 +20,6 @@ public class PedidoEntity {
     private String clientId;
     private PedidoStatus status;
     private LocalDateTime createdAt;
-    private LocalDateTime receivedAt;
-    private LocalDateTime preparedAt;
-    private LocalDateTime withdrawnAt;
+    private LocalDateTime lastUpdatedAt;
     private List<ComboEntity> combos;
 }

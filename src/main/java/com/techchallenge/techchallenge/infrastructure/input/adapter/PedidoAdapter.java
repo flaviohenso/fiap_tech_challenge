@@ -3,6 +3,7 @@ package com.techchallenge.techchallenge.infrastructure.input.adapter;
 import com.techchallenge.techchallenge.aplication.usecases.PedidoUseCase;
 import com.techchallenge.techchallenge.core.domain.dto.PedidoDtoMapper;
 import com.techchallenge.techchallenge.core.domain.dto.pedido.CriarPedidoRequestDto;
+import com.techchallenge.techchallenge.core.domain.dto.pedido.UpdatePedidoStatusRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.pedido.Pedido;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -34,5 +35,14 @@ public class PedidoAdapter {
             @RequestParam(value = "status", required = false) String status
     ) {
         return ResponseEntity.ok().body(pedidoUseCase.findAll(status));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Pedido> patchPedidoStatus(
+            @PathVariable("id") String id,
+            @RequestBody UpdatePedidoStatusRequestDto updatePedidoStatusRequestDto
+    ) {
+        Pedido pedido = pedidoUseCase.updateStatus(id, updatePedidoStatusRequestDto.getStatus());
+        return new ResponseEntity<>(pedido, HttpStatus.OK);
     }
 }

@@ -18,7 +18,7 @@ public class PedidoMongoAdapter implements PedidoOutputPort {
     private PedidoEntityMapper mapper;
 
     @Override
-    public Pedido criarPedido(Pedido pedido) {
+    public Pedido savePedido(Pedido pedido) {
         return Optional.of(pedido)
                 .map(mapper::toEntity)
                 .map(repository::save)
@@ -36,5 +36,11 @@ public class PedidoMongoAdapter implements PedidoOutputPort {
             pedidoEntities = repository.findByStatus(status, sort);
         }
         return pedidoEntities.stream().map(mapper::fromEntity).toList();
+    }
+
+    @Override
+    public Optional<Pedido> findById(String id) {
+        return repository.findById(id)
+                .map(mapper::fromEntity);
     }
 }
