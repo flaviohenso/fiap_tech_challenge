@@ -16,7 +16,7 @@
 
 ![alt text](<Documents/Event Storm - Quadro 5.jpg>)
 
-![alt text](<Documents/Event Storm - Quadro 6.jpg>)
+![alt text](<Documents/Event_Storm_-_Quadro_6.jpg>)
 
 ## Como gerar a  imagem docker da aplicação
 
