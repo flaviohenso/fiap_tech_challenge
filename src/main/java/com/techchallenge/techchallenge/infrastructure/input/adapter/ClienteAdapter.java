@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techchallenge.techchallenge.aplication.usecases.ClienteUseCase;
-import com.techchallenge.techchallenge.core.domain.dto.ClienteDtoMapper;
-import com.techchallenge.techchallenge.core.domain.dto.ClienteRequestDto;
 import com.techchallenge.techchallenge.core.domain.entity.Cliente;
+import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteDtoMapper;
+import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteRequestDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -26,9 +26,9 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping(value = "/api/clientes")
 public class ClienteAdapter {
 
-    private final ClienteUseCase clienteUseCase;
+    private ClienteUseCase clienteUseCase;
 
-    private final ClienteDtoMapper mapper;
+    private ClienteDtoMapper mapper;
 
     public ClienteAdapter(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
         this.clienteUseCase = clienteUseCase;

@@ -6,5 +6,5 @@ import com.techchallenge.techchallenge.core.domain.entity.Pagamento;
 
 public interface PagamentoOutputPort {
     public List<Pagamento> getAll();
-    public Pagamento create(Pagamento pagamento) ;  
+    public Pagamento create(Pagamento pagamento);  
 }
