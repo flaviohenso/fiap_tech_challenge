@@ -1,10 +1,11 @@
 package com.techchallenge.techchallenge.aplication.ports.output;
 
-import java.util.List;
+import com.techchallenge.techchallenge.core.entities.Pagamento;
 
-import com.techchallenge.techchallenge.core.domain.entity.Pagamento;
+import java.util.List;
 
 public interface PagamentoOutputPort {
     public List<Pagamento> getAll();
-    public Pagamento create(Pagamento pagamento);  
+
+    public Pagamento create(Pagamento pagamento);
 }

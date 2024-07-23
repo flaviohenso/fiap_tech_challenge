@@ -1,15 +1,15 @@
 package com.techchallenge.techchallenge.aplication.ports.input;
 
+import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
+import com.techchallenge.techchallenge.core.entities.Cliente;
+import com.techchallenge.techchallenge.core.exceptions.CpfAlreadySavedException;
+import com.techchallenge.techchallenge.core.exceptions.NotFoundException;
+import com.techchallenge.techchallenge.core.usecases.ClienteUseCase;
+
 import java.util.List;
 import java.util.UUID;
 
-import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
-import com.techchallenge.techchallenge.aplication.usecases.ClienteUseCase;
-import com.techchallenge.techchallenge.core.domain.entity.Cliente;
-import com.techchallenge.techchallenge.core.domain.exceptions.CpfAlreadySavedException;
-import com.techchallenge.techchallenge.core.domain.exceptions.NotFoundException;
-
-public class ClienteInputPort implements ClienteUseCase{
+public class ClienteInputPort implements ClienteUseCase {
 
     private ClienteOutputPort clienteOutPort;
 
@@ -48,5 +48,5 @@ public class ClienteInputPort implements ClienteUseCase{
     public void delete(UUID id) {
         clienteOutPort.delete(id);
     }
-    
+
 }

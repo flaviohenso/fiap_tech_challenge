@@ -1,14 +1,14 @@
 package com.techchallenge.techchallenge.aplication.ports.input;
 
+import com.techchallenge.techchallenge.aplication.ports.output.ProdutoOutputPort;
+import com.techchallenge.techchallenge.core.entities.Produto;
+import com.techchallenge.techchallenge.core.usecases.ProdutoUseCase;
+import com.techchallenge.techchallenge.infrastructure.input.dto.produto.ProdutoRequestDto;
+
 import java.util.List;
 import java.util.UUID;
 
-import com.techchallenge.techchallenge.aplication.ports.output.ProdutoOutputPort;
-import com.techchallenge.techchallenge.aplication.usecases.ProdutoUseCase;
-import com.techchallenge.techchallenge.core.domain.entity.Produto;
-import com.techchallenge.techchallenge.infrastructure.input.dto.produto.ProdutoRequestDto;
-
-public class ProdutoInputPort implements ProdutoUseCase{
+public class ProdutoInputPort implements ProdutoUseCase {
 
     private ProdutoOutputPort produtoOutputPort;
 
@@ -53,5 +53,5 @@ public class ProdutoInputPort implements ProdutoUseCase{
                 .withIdRadom()
                 .build();
     }
-    
+
 }

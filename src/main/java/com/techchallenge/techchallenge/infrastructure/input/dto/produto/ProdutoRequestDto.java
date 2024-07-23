@@ -1,12 +1,12 @@
 package com.techchallenge.techchallenge.infrastructure.input.dto.produto;
 
-import java.math.BigDecimal;
+import com.techchallenge.techchallenge.core.vo.Categoria;
 
-import com.techchallenge.techchallenge.core.domain.vo.Categoria;
+import java.math.BigDecimal;
 
 public class ProdutoRequestDto {
 
-    
+
     private String nome;
     private BigDecimal preco;
     private String descricao;
@@ -17,7 +17,7 @@ public class ProdutoRequestDto {
     }
 
     public ProdutoRequestDto(String nome, BigDecimal preco, String descricao, String imagem, Categoria categoria) {
-        
+
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
