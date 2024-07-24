@@ -33,15 +33,15 @@ public class ClienteMongoDbDataSource implements IClienteDataSource {
         return cliente;
     }
 
-    public ClienteDto savePedido(ClienteDto cliente) {
-
-        var id = cliente.getId();
-        Document updatedDoc = convertClienteToDocument(id, cliente);
-        Bson filter = Filters.eq("id", cliente.getId());
-
-        collection.replaceOne(filter, updatedDoc);
-
-        return cliente;
+    @Override
+    public List<ClienteDto> findByCpf(String cpf) {
+        Bson filter = Filters.eq("cpf", cpf);
+        FindIterable<Document> docs = collection.find(filter);
+        List<ClienteDto> clientes = new ArrayList<>();
+        for (Document doc : docs) {
+            clientes.add(convertDocumentToCliente(doc));
+        }
+        return clientes;
     }
 
     private Document convertClienteToDocument(String id, ClienteDto cliente) {

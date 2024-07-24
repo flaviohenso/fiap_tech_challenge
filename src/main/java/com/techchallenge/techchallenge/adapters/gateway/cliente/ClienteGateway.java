@@ -6,6 +6,8 @@ import com.techchallenge.techchallenge.core.exceptions.InvalidClienteException;
 import com.techchallenge.techchallenge.pkg.dto.cliente.ClienteDto;
 import com.techchallenge.techchallenge.pkg.interfaces.IClienteDataSource;
 
+import java.util.List;
+
 public class ClienteGateway {
 
     private final IClienteDataSource dataSource;
@@ -22,4 +24,9 @@ public class ClienteGateway {
         return ClienteMapper.toClienteEntity(savedCliente);
     }
 
+    public List<ClienteEntity> findByCpf(String cpf) {
+        List<ClienteDto> clientes = dataSource.findByCpf(cpf);
+        
+        return clientes.stream().map(ClienteMapper::toClienteEntity).toList();
+    }
 }
