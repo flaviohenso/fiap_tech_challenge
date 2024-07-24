@@ -1,13 +1,13 @@
 package com.techchallenge.techchallenge.core.usecases;
 
-import com.techchallenge.techchallenge.adapters.gateway.PedidoGateway;
+import com.techchallenge.techchallenge.adapters.gateway.pedido.PedidoGateway;
 import com.techchallenge.techchallenge.core.entities.pedido.ComboEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
 import com.techchallenge.techchallenge.core.entities.pedido.ProdutoComboEntity;
 import com.techchallenge.techchallenge.core.exceptions.PedidoNotFoundException;
-import com.techchallenge.techchallenge.core.requests.CriarPedidoDto;
-import com.techchallenge.techchallenge.core.requests.CriarProdutoComboDto;
+import com.techchallenge.techchallenge.core.requests.pedido.CriarPedidoDto;
+import com.techchallenge.techchallenge.core.requests.pedido.CriarProdutoComboDto;
 
 import java.time.OffsetDateTime;
 import java.util.List;

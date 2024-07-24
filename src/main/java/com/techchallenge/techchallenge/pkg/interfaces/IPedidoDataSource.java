@@ -1,6 +1,6 @@
 package com.techchallenge.techchallenge.pkg.interfaces;
 
-import com.techchallenge.techchallenge.pkg.dto.PedidoDto;
+import com.techchallenge.techchallenge.pkg.dto.pedido.PedidoDto;
 
 import java.util.List;
 

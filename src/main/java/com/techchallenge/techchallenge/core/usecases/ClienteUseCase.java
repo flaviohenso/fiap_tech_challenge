@@ -1,24 +1,34 @@
 package com.techchallenge.techchallenge.core.usecases;
 
-import com.techchallenge.techchallenge.core.entities.Cliente;
+import com.techchallenge.techchallenge.adapters.gateway.cliente.ClienteGateway;
+import com.techchallenge.techchallenge.core.entities.cliente.ClienteEntity;
+import com.techchallenge.techchallenge.core.requests.cliente.CriarClienteDto;
 
-import java.util.List;
-import java.util.UUID;
+import java.time.OffsetDateTime;
 
-/**
- * ClienteUseCase
- * <p>
- * This interface represents the use case for the Cliente entity.
- */
-public interface ClienteUseCase {
+public class ClienteUseCase {
+    private final ClienteGateway clienteGateway;
 
-    public List<Cliente> findAll(String cpf);
+    public ClienteUseCase(ClienteGateway clienteGateway) {
+        this.clienteGateway = clienteGateway;
+    }
 
-    public Cliente findById(UUID id);
+    public ClienteEntity criar(CriarClienteDto criarClienteDto) {
+        var cliente = toClienteEntity(criarClienteDto);
+        return clienteGateway.criar(cliente);
+    }
 
-    public Cliente create(Cliente cliente);
+    private ClienteEntity toClienteEntity(CriarClienteDto criarClienteDto) {
+        OffsetDateTime now = OffsetDateTime.now();
+        return new ClienteEntity(
+                null,
+                criarClienteDto.getNome(),
+                criarClienteDto.getCpf(),
+                criarClienteDto.getEmail(),
+                criarClienteDto.getTelefone(),
+                now,
+                now
+        );
+    }
 
-    public Cliente update(Cliente cliente);
-
-    public void delete(UUID id);
 }

@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.core.requests;
+package com.techchallenge.techchallenge.core.requests.pedido;
 
 public class CriarComboDto {
     private final CriarProdutoComboDto lanche;

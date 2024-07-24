@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.pkg.dto;
+package com.techchallenge.techchallenge.pkg.dto.pedido;
 
 import java.math.BigDecimal;
 

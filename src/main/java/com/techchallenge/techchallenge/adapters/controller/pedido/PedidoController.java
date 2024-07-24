@@ -1,9 +1,9 @@
-package com.techchallenge.techchallenge.adapters.controller;
+package com.techchallenge.techchallenge.adapters.controller.pedido;
 
-import com.techchallenge.techchallenge.adapters.gateway.PedidoGateway;
+import com.techchallenge.techchallenge.adapters.gateway.pedido.PedidoGateway;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
-import com.techchallenge.techchallenge.core.requests.CriarPedidoDto;
+import com.techchallenge.techchallenge.core.requests.pedido.CriarPedidoDto;
 import com.techchallenge.techchallenge.core.usecases.PedidoUseCase;
 import com.techchallenge.techchallenge.pkg.interfaces.IPedidoDataSource;
 

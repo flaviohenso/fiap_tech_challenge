@@ -1,9 +1,9 @@
-package com.techchallenge.techchallenge.adapters.gateway;
+package com.techchallenge.techchallenge.adapters.gateway.pedido;
 
-import com.techchallenge.techchallenge.adapters.gateway.mapper.PedidoMapper;
+import com.techchallenge.techchallenge.adapters.gateway.pedido.mapper.PedidoMapper;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.exceptions.InvalidPedidoException;
-import com.techchallenge.techchallenge.pkg.dto.PedidoDto;
+import com.techchallenge.techchallenge.pkg.dto.pedido.PedidoDto;
 import com.techchallenge.techchallenge.pkg.interfaces.IPedidoDataSource;
 
 import java.util.List;

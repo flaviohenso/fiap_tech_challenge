@@ -36,7 +36,7 @@ public class PedidoEntity {
     }
 
     private void validate(String clientId, List<ComboEntity> comboEntities) {
-        if (clientId.isBlank())
+        if (clientId == null || clientId.isBlank())
             throw new InvalidPedidoException("id de cliente invalido");
 
         if (comboEntities == null || comboEntities.isEmpty())

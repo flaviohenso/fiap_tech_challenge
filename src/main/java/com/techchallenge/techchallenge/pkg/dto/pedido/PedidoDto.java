@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.pkg.dto;
+package com.techchallenge.techchallenge.pkg.dto.pedido;
 
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
 
