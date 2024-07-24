@@ -1,25 +1,23 @@
 package com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente;
 
+import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
+import com.techchallenge.techchallenge.core.entities.Cliente;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
+import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.MongoClienteRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
-
-import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort;
-import com.techchallenge.techchallenge.core.domain.entity.Cliente;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.mappers.ClienteEntityMapper;
-import com.techchallenge.techchallenge.infrastructure.output.mongodb.repositories.cliente.repository.MongoClienteRepository;
-
-import lombok.AllArgsConstructor;
-
 @Component
 @AllArgsConstructor
-public class ClienteMongoAdapter implements ClienteOutputPort{
+public class ClienteMongoAdapter implements ClienteOutputPort {
 
     private final ClienteEntityMapper mapper;
 
-    private final MongoClienteRepository repository;   
+    private final MongoClienteRepository repository;
 
     @Override
     public List<Cliente> getAll() {

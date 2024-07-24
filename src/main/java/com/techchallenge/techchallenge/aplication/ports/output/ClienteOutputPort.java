@@ -1,10 +1,10 @@
 package com.techchallenge.techchallenge.aplication.ports.output;
 
+import com.techchallenge.techchallenge.core.entities.Cliente;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import com.techchallenge.techchallenge.core.domain.entity.Cliente;
 
 public interface ClienteOutputPort {
 
@@ -16,5 +16,5 @@ public interface ClienteOutputPort {
 
     public void delete(UUID uuid);
 
-    public List<Cliente> getByCPF(String cpf);    
+    public List<Cliente> getByCPF(String cpf);
 }

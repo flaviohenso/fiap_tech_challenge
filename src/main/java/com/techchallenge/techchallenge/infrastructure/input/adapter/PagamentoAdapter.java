@@ -1,22 +1,16 @@
 package com.techchallenge.techchallenge.infrastructure.input.adapter;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.techchallenge.techchallenge.aplication.usecases.PagamentoUseCase;
-import com.techchallenge.techchallenge.core.domain.entity.Pagamento;
+import com.techchallenge.techchallenge.core.entities.Pagamento;
+import com.techchallenge.techchallenge.core.usecases.PagamentoUseCase;
 import com.techchallenge.techchallenge.infrastructure.input.dto.pagamento.PagamentoDtoMapper;
 import com.techchallenge.techchallenge.infrastructure.input.dto.pagamento.PagamentoRequestDto;
 import com.techchallenge.techchallenge.infrastructure.input.dto.pagamento.PagamentoResponseDto;
-
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/pagamentos")
@@ -25,6 +19,7 @@ public class PagamentoAdapter {
 
     private final PagamentoUseCase pagamentoUseCase;
     private final PagamentoDtoMapper mapper;
+
     /*
      * End point para pagamento
      */
