@@ -1,9 +1,9 @@
 package com.techchallenge.techchallenge.api.handlers;
 
-import com.techchallenge.techchallenge.adapters.controller.PedidoController;
+import com.techchallenge.techchallenge.adapters.controller.pedido.PedidoController;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
-import com.techchallenge.techchallenge.core.requests.AtualizarPedidoStatusDto;
-import com.techchallenge.techchallenge.core.requests.CriarPedidoDto;
+import com.techchallenge.techchallenge.core.requests.pedido.AtualizarPedidoStatusDto;
+import com.techchallenge.techchallenge.core.requests.pedido.CriarPedidoDto;
 import com.techchallenge.techchallenge.external.datasource.mongodb.PedidoMongoDbDataSource;
 import com.techchallenge.techchallenge.pkg.interfaces.IPedidoDataSource;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.pkg.dto;
+package com.techchallenge.techchallenge.pkg.dto.pedido;
 
 public class ComboDto {
     private final ProdutoComboDto lanche;

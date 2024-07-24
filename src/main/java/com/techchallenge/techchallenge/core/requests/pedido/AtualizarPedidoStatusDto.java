@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.core.requests;
+package com.techchallenge.techchallenge.core.requests.pedido;
 
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
 import lombok.AllArgsConstructor;

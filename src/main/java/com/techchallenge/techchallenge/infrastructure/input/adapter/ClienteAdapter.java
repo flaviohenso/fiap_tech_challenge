@@ -1,10 +1,9 @@
 package com.techchallenge.techchallenge.infrastructure.input.adapter;
 
 import com.techchallenge.techchallenge.core.entities.Cliente;
-import com.techchallenge.techchallenge.core.usecases.ClienteUseCase;
+import com.techchallenge.techchallenge.core.usecases.IClienteUseCase;
 import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteDtoMapper;
 import com.techchallenge.techchallenge.infrastructure.input.dto.cliente.ClienteRequestDto;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,11 @@ import java.util.UUID;
 @RequestMapping(value = "/api/clientes")
 public class ClienteAdapter {
 
-    private ClienteUseCase clienteUseCase;
+    private IClienteUseCase clienteUseCase;
 
     private ClienteDtoMapper mapper;
 
-    public ClienteAdapter(ClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
+    public ClienteAdapter(IClienteUseCase clienteUseCase, ClienteDtoMapper mapper) {
         this.clienteUseCase = clienteUseCase;
         this.mapper = mapper;
     }
@@ -36,14 +35,6 @@ public class ClienteAdapter {
     public ResponseEntity<Cliente> getClienteById(@PathVariable("id") String id) {
         var uuid = UUID.fromString(id);
         return ResponseEntity.ok().body(clienteUseCase.findById(uuid));
-    }
-
-    @Operation(summary = "Cria novo cliente",
-            description = "Cria um novo cliente na base de dados. Em caso do CPF já existir retorna um erro.")
-    @PostMapping
-    public ResponseEntity<Cliente> createCliente(@RequestBody ClienteRequestDto cliente) {
-        Cliente createdCliente = clienteUseCase.create(mapper.fromDto(cliente));
-        return new ResponseEntity<>(createdCliente, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

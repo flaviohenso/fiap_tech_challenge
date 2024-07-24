@@ -1,11 +1,11 @@
-package com.techchallenge.techchallenge.adapters.gateway.mapper;
+package com.techchallenge.techchallenge.adapters.gateway.pedido.mapper;
 
 import com.techchallenge.techchallenge.core.entities.pedido.ComboEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.ProdutoComboEntity;
-import com.techchallenge.techchallenge.pkg.dto.ComboDto;
-import com.techchallenge.techchallenge.pkg.dto.PedidoDto;
-import com.techchallenge.techchallenge.pkg.dto.ProdutoComboDto;
+import com.techchallenge.techchallenge.pkg.dto.pedido.ComboDto;
+import com.techchallenge.techchallenge.pkg.dto.pedido.PedidoDto;
+import com.techchallenge.techchallenge.pkg.dto.pedido.ProdutoComboDto;
 
 public class PedidoMapper {
 

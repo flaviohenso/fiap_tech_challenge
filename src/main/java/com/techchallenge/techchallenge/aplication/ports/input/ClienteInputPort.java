@@ -4,12 +4,12 @@ import com.techchallenge.techchallenge.aplication.ports.output.ClienteOutputPort
 import com.techchallenge.techchallenge.core.entities.Cliente;
 import com.techchallenge.techchallenge.core.exceptions.CpfAlreadySavedException;
 import com.techchallenge.techchallenge.core.exceptions.NotFoundException;
-import com.techchallenge.techchallenge.core.usecases.ClienteUseCase;
+import com.techchallenge.techchallenge.core.usecases.IClienteUseCase;
 
 import java.util.List;
 import java.util.UUID;
 
-public class ClienteInputPort implements ClienteUseCase {
+public class ClienteInputPort implements IClienteUseCase {
 
     private ClienteOutputPort clienteOutPort;
 
