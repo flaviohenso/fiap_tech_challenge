@@ -93,3 +93,8 @@ nb-configuration.xml
 ## Miscellaneous
 ##############################
 *.log
+
+##############################
+## Terraform
+##############################
+.terraform/

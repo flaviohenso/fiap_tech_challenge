@@ -5,9 +5,9 @@ metadata:
   namespace: app
 spec:
   selector:
-    app: application
+    app: app
   ports:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-  type: NodePort # Ou LoadBalancer, se necessário
+  type: ClusterIP
