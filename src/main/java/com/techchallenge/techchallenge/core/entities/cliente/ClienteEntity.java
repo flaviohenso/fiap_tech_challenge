@@ -9,10 +9,10 @@ public class ClienteEntity {
     private final String id;
     private final String nome;
     private final String cpf;
-    private final String email;
-    private final String telefone;
+    private String email;
+    private String telefone;
     private final OffsetDateTime createdAt;
-    private final OffsetDateTime updatedAt;
+    private OffsetDateTime updatedAt;
 
     public ClienteEntity(
             String id,
@@ -80,5 +80,17 @@ public class ClienteEntity {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getCpf(), getEmail(), getTelefone(), getUpdatedAt(), getCreatedAt());
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOffsetDateTime(OffsetDateTime now) {
+        this.updatedAt = now;
     }
 }
