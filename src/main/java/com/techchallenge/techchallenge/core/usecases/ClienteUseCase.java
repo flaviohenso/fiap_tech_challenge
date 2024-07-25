@@ -2,7 +2,9 @@ package com.techchallenge.techchallenge.core.usecases;
 
 import com.techchallenge.techchallenge.adapters.gateway.cliente.ClienteGateway;
 import com.techchallenge.techchallenge.core.entities.cliente.ClienteEntity;
+import com.techchallenge.techchallenge.core.exceptions.ClienteNotFoundException;
 import com.techchallenge.techchallenge.core.exceptions.InvalidClienteException;
+import com.techchallenge.techchallenge.core.requests.cliente.AtualizarClienteDto;
 import com.techchallenge.techchallenge.core.requests.cliente.CriarClienteDto;
 
 import java.time.OffsetDateTime;
@@ -36,4 +38,26 @@ public class ClienteUseCase {
         );
     }
 
+    public List<ClienteEntity> buscarTodos(String cpf) {
+        return clienteGateway.findByCpf(cpf);
+    }
+
+    public void deletar(String id) {
+        clienteGateway.deleteById(id);
+    }
+
+    public ClienteEntity buscarPorId(String id) {
+        return clienteGateway.buscarPorId(id);
+    }
+
+    public ClienteEntity atualizar(String id, AtualizarClienteDto dto) {
+        ClienteEntity cliente = clienteGateway.buscarPorId(id);
+        if (cliente == null)
+            throw new ClienteNotFoundException(id);
+
+        cliente.setTelefone(dto.getTelefone());
+        cliente.setEmail(dto.getEmail());
+        cliente.setOffsetDateTime(OffsetDateTime.now());
+        return clienteGateway.atualizar(cliente);
+    }
 }

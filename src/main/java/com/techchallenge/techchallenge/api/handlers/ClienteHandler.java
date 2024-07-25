@@ -2,6 +2,7 @@ package com.techchallenge.techchallenge.api.handlers;
 
 import com.techchallenge.techchallenge.adapters.controller.cliente.ClienteController;
 import com.techchallenge.techchallenge.core.entities.cliente.ClienteEntity;
+import com.techchallenge.techchallenge.core.requests.cliente.AtualizarClienteDto;
 import com.techchallenge.techchallenge.core.requests.cliente.CriarClienteDto;
 import com.techchallenge.techchallenge.external.datasource.mongodb.ClienteMongoDbDataSource;
 import com.techchallenge.techchallenge.pkg.interfaces.IClienteDataSource;
@@ -9,10 +10,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/clientes")
@@ -37,5 +37,48 @@ public class ClienteHandler {
 
         ClienteEntity cliente = controller.cadastrarCliente(dto);
         return new ResponseEntity<>(cliente, HttpStatus.CREATED);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<ClienteEntity>> getAll(
+            @RequestParam(value = "cpf", required = false) String cpf
+    ) {
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        ClienteController controller = new ClienteController(dataSource);
+
+        List<ClienteEntity> clientes = controller.buscarTodos(cpf);
+        return new ResponseEntity<>(clientes, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        ClienteController controller = new ClienteController(dataSource);
+
+        controller.deletar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteEntity> getById(@PathVariable("id") String id) {
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        ClienteController controller = new ClienteController(dataSource);
+
+        ClienteEntity cliente = controller.getById(id);
+        return ResponseEntity.ok().body(cliente);
+    }
+
+    @Operation(summary = "Atualizar cliente",
+            description = "Atualiza dados do cliente na base de dados.")
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClienteEntity> atualizar(
+            @PathVariable("id") String id,
+            @RequestBody AtualizarClienteDto dto
+    ) {
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        ClienteController controller = new ClienteController(dataSource);
+
+        ClienteEntity cliente = controller.atualizar(id, dto);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 }

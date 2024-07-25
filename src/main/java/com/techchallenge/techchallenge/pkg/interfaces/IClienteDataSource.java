@@ -8,4 +8,10 @@ public interface IClienteDataSource {
     ClienteDto insertCliente(ClienteDto cliente);
 
     List<ClienteDto> findByCpf(String cpf);
+
+    void deleteById(String id);
+
+    ClienteDto getById(String id);
+
+    ClienteDto updateCliente(ClienteDto cliente);
 }
