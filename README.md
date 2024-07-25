@@ -1,7 +1,6 @@
-# Fiap Tech Challenge
+    # Fiap Tech Challenge
 
 ## Event storming
-
 
 Link para o [Miro](https://miro.com/app/board/uXjVKWJMoGM=/?share_link_id=84755743046)
 
@@ -40,9 +39,9 @@ Usei
 este [artigo do medium](https://salithachathuranga94.medium.com/deploy-rest-api-using-spring-boot-mongodb-and-docker-e7ab620b24d6)
 como referência para colocar a aplicação num docker.
 
-
 ## Requisitos para rodar a aplicação
-1. Instalar o docker 
+
+1. Instalar o docker
 
 Exemplo no Linux:
 
@@ -55,15 +54,17 @@ Documetação oficial para os demais Sistemas operacionais:
 > [!NOTE]
 > https://docs.docker.com/get-docker/
 
-
 ## Como rodar a aplicação utilizando o docker:
+
 ```
 docker compose up -d
 ```
+
 > [!NOTE]
 > Nossas Imagens docker estão sendo armazenadas no Docker Hub
-> Link do repositório [fiap_tech_challenge](https://hub.docker.com/repository/docker/pedrogimenezsilva/fiap_tech_challenge/general)
-
+> Link do
+>
+repositório [fiap_tech_challenge](https://hub.docker.com/repository/docker/pedrogimenezsilva/fiap_tech_challenge/general)
 
 ## Swagger
 
@@ -71,3 +72,21 @@ A aplicação gera automaticamente um swagger com todos os endpoints disponívei
 
 > [!NOTE]
 > O swagger é acessado em http://localhost:8081/swagger-ui/index.html
+
+
+classDiagram
+Class01 <|-- AveryLongClass : Cool
+<<Interface>> Class01
+Class09 --> C2 : Where am I?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+class Class10 {
+<<service>>
+int id
+size()
+}
