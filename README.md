@@ -75,7 +75,8 @@ A aplicação gera automaticamente um swagger com todos os endpoints disponívei
 
 
 classDiagram
-'''mermaid
+
+```mermaid
 Class01 <|-- AveryLongClass : Cool
 <<Interface>> Class01
 Class09 --> C2 : Where am I?
@@ -91,4 +92,4 @@ class Class10 {
 int id
 size()
 }
-'''
+```
