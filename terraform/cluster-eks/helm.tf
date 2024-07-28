@@ -18,6 +18,45 @@ resource "kubernetes_namespace" "argocd" {
   }
 }
 
+resource "kubernetes_namespace" "metrics" {
+  metadata {
+    name = "metrics"
+  }
+}
+
+resource "helm_release" "metrics_server" {
+  name       = "metrics-server"
+  repository = "https://kubernetes-sigs.github.io/metrics-server/"
+  chart      = "metrics-server"
+  namespace =  "metrics"
+  version    = "3.8.3"  # Substitua pela versão desejada
+
+  set {
+    name  = "args[0]"
+    value = "--kubelet-insecure-tls"
+  }
+
+  set {
+    name  = "resources.limits.cpu"
+    value = "200m"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "200Mi"
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "100Mi"
+  }
+depends_on = [ kubernetes_namespace.metrics ]
+}
 
 resource "helm_release" "argocd" {
   name       = "argocd"
