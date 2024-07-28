@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.core.vo;
+package com.techchallenge.techchallenge.core.entities.produto;
 
 public enum Categoria {
     LANCHE,

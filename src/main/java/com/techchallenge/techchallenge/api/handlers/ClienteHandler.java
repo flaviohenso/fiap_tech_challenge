@@ -50,15 +50,6 @@ public class ClienteHandler {
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
-        controller.deletar(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<ClienteEntity> getById(@PathVariable("id") String id) {
         IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
@@ -66,6 +57,15 @@ public class ClienteHandler {
 
         ClienteEntity cliente = controller.getById(id);
         return ResponseEntity.ok().body(cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        ClienteController controller = new ClienteController(dataSource);
+
+        controller.deletar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Atualizar cliente",
