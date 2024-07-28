@@ -18,6 +18,13 @@ spec:
           image: pedrogimenezsilva/fiap_tech_challenge:v1.0.0
           ports:
             - containerPort: 8081
+          resources:
+            requests:
+              memory: "300Mi"  
+              cpu: "500m"     
+            limits:
+              memory: "600Mi"  
+              cpu: "1000m"   
           env:
             - name: ENVIRONMENT
               value: dev

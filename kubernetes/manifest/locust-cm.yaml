@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  locustfile.py: |-
+    from locust import HttpUser, task, between
+
+    class Giropops(HttpUser):
+        wait_time = between(1, 2)
+
+     
+
+        @task(2)
+        def listar_api(self):
+            self.client.get("/swagger-ui/index.html#/")
+kind: ConfigMap
+metadata:
+  name: locust-scripts
