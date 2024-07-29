@@ -28,8 +28,10 @@ public class ClienteHandler {
         this.mongoDatabase = mongoDatabase;
     }
 
-    @Operation(summary = "Cria novo cliente",
-            description = "Cria um novo cliente na base de dados. Em caso do CPF já existir retorna um erro.")
+    @Operation(
+            summary = "Cria novo cliente",
+            description = "Cria um novo cliente na base de dados. Em caso do CPF já existir retorna um erro."
+    )
     @PostMapping
     public ResponseEntity<ClienteEntity> create(@RequestBody CriarClienteDto dto) {
         IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);

@@ -5,5 +5,5 @@ public enum PedidoStatus {
     RECEBIDO,
     EM_PREPARACAO,
     PRONTO,
-    RETIRADO
+    FINALIZADO
 }
