@@ -27,13 +27,16 @@ public class PagamentoHandler {
 
     private final String mongoDatabase;
 
-    private final String paymentCallbackUrl = "mydomain.sample.com/callback-mercadopago";
+    private final String paymentCallbackUrl;
 
     public PagamentoHandler(
             @Value("${mongo.connection}") String mongoConnection,
-            @Value("${mongo.database}") String mongoDatabase) {
+            @Value("${mongo.database}") String mongoDatabase,
+            @Value("${payment.callback.url}") String paymentCallbackUrl
+    ) {
         this.mongoConnection = mongoConnection;
         this.mongoDatabase = mongoDatabase;
+        this.paymentCallbackUrl = paymentCallbackUrl;
     }
 
     @Operation(
