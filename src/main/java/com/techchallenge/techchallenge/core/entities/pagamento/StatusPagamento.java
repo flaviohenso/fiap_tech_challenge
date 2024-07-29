@@ -1,4 +1,4 @@
-package com.techchallenge.techchallenge.core.vo;
+package com.techchallenge.techchallenge.core.entities.pagamento;
 
 /**
  * StatusPagamento
@@ -8,8 +8,7 @@ package com.techchallenge.techchallenge.core.vo;
 public enum StatusPagamento {
     PENDENTE("PENDENTE"),
     APROVADO("APROVADO"),
-    REJEITADO("CANCELADO"),
-    PAGO("PAGO");
+    REJEITADO("CANCELADO");
 
     private String status;
 
