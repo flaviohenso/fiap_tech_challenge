@@ -95,6 +95,17 @@ public class PedidoMongoDbDataSource implements IPedidoDataSource {
         return pedidos;
     }
 
+    @Override
+    public List<PedidoDto> findAllInStatus(List<PedidoStatus> statuses) {
+        Bson filter = Filters.in("status", statuses);
+        List<PedidoDto> pedidos = new ArrayList<>();
+        FindIterable<Document> docs = collection.find(filter);
+        for (Document doc : docs) {
+            pedidos.add(convertDocumentToPedido(doc));
+        }
+        return pedidos;
+    }
+
     private PedidoDto convertDocumentToPedido(Document doc) {
         String id = doc.getString("id");
         PedidoStatus status = PedidoStatus.valueOf(doc.getString("status"));
