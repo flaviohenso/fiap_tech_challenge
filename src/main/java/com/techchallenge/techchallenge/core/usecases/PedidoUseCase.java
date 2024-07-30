@@ -1,6 +1,7 @@
 package com.techchallenge.techchallenge.core.usecases;
 
 import com.techchallenge.techchallenge.adapters.gateway.pedido.PedidoGateway;
+import com.techchallenge.techchallenge.core.entities.pagamento.StatusPagamento;
 import com.techchallenge.techchallenge.core.entities.pedido.ComboEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
@@ -62,6 +63,18 @@ public class PedidoUseCase {
 
     public List<PedidoEntity> buscarTodos() {
         return pedidoGateway.findAll();
+    }
+
+    public PedidoEntity atualizarStatusCallbackPagamento(String id, StatusPagamento statusPagamento) {
+        PedidoEntity pedido = buscarPorId(id);
+
+        if (statusPagamento == StatusPagamento.APROVADO) {
+            pedido.setStatus(PedidoStatus.RECEBIDO);
+            pedido.setUpdatedAt(OffsetDateTime.now());
+
+            return pedidoGateway.atualizar(pedido);
+        }
+        return pedido;
     }
 
     public PedidoEntity atualizarStatus(String id, PedidoStatus status) {
