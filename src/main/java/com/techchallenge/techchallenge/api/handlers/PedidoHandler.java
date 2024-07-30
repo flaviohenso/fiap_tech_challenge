@@ -21,20 +21,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/api/pedidos")
 public class PedidoHandler {
-    private final PedidoController controller;
+    private final PedidoController pedidoController;
 
     public PedidoHandler(
             @Value("${mongo.connection}") String mongoConnection,
             @Value("${mongo.database}") String mongoDatabase) {
         IPedidoDataSource dataSource = new PedidoMongoDbDataSource(mongoConnection, mongoDatabase);
         IPagamentoDataSource pagamentoDataSource = new PagamentoMongoDbDataSource(mongoConnection, mongoDatabase);
-        this.controller = new PedidoController(dataSource, pagamentoDataSource);
+        this.pedidoController = new PedidoController(dataSource, pagamentoDataSource);
     }
 
     @Operation(summary = "Cria novo pedido", description = "Cria um novo pedido na base de dados.")
     @PostMapping
     public ResponseEntity<PedidoEntity> create(@RequestBody CriarPedidoDto dto) {
-        PedidoEntity pedido = controller.cadastrarPedido(dto);
+        PedidoEntity pedido = pedidoController.cadastrarPedido(dto);
         return new ResponseEntity<>(pedido, HttpStatus.CREATED);
     }
 
@@ -44,7 +44,7 @@ public class PedidoHandler {
             @PathVariable("id") String id
     ) {
         return Optional.of(id)
-                .map(controller::getById)
+                .map(pedidoController::getById)
                 .map(p -> new ResponseEntity<>(p, HttpStatus.OK))
                 .orElse(ResponseEntity.notFound().build())
                 ;
@@ -56,7 +56,7 @@ public class PedidoHandler {
             @PathVariable("id") String id
     ) {
         return Optional.of(id)
-                .map(controller::getPedidoPagamentoByPedidoId)
+                .map(pedidoController::getPedidoPagamentoByPedidoId)
                 .map(p -> new ResponseEntity<>(p, HttpStatus.OK))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -66,7 +66,7 @@ public class PedidoHandler {
     public ResponseEntity<List<PedidoEntity>> getPedidos(
             @RequestParam(value = "status", required = false) String status
     ) {
-        List<PedidoEntity> pedidos = controller.getAll();
+        List<PedidoEntity> pedidos = pedidoController.getAll();
         return ResponseEntity.ok().body(pedidos);
     }
 
@@ -76,7 +76,7 @@ public class PedidoHandler {
             @PathVariable("id") String id,
             @RequestBody AtualizarPedidoStatusDto atualizarPedidoStatusDto
     ) {
-        PedidoEntity pedido = controller.atualizarStatus(id, atualizarPedidoStatusDto.getStatus());
+        PedidoEntity pedido = pedidoController.atualizarStatus(id, atualizarPedidoStatusDto.getStatus());
         return new ResponseEntity<>(pedido, HttpStatus.OK);
     }
 }

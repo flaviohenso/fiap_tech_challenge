@@ -23,46 +23,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/pagamentos")
 public class PagamentoHandler {
 
-    private final String mongoConnection;
-
-    private final String mongoDatabase;
-
-    private final String paymentCallbackUrl;
+    private final PagamentoController pagamentoController;
 
     public PagamentoHandler(
             @Value("${mongo.connection}") String mongoConnection,
             @Value("${mongo.database}") String mongoDatabase,
             @Value("${payment.callback.url}") String paymentCallbackUrl
     ) {
-        this.mongoConnection = mongoConnection;
-        this.mongoDatabase = mongoDatabase;
-        this.paymentCallbackUrl = paymentCallbackUrl;
+        IPagamentoDataSource pagamentoDataSource = new PagamentoMongoDbDataSource(mongoConnection, mongoDatabase);
+        IPedidoDataSource pedidoDataSource = new PedidoMongoDbDataSource(mongoConnection, mongoDatabase);
+        IPaymentProcessorWebClient webClient = new MercadoPagoPaymentProcessorWebClient(paymentCallbackUrl);
+        this.pagamentoController = new PagamentoController(pedidoDataSource, pagamentoDataSource, webClient);
     }
 
     @Operation(
             summary = "Cria novo pagamento",
             description = "Cria um novo pagamento na base de dados."
     )
-
     @PostMapping
     public ResponseEntity<PagamentoEntity> create(@RequestBody CriarPagamentoDto dto) {
-        IPagamentoDataSource pagamentoDataSource = new PagamentoMongoDbDataSource(mongoConnection, mongoDatabase);
-        IPedidoDataSource pedidoDataSource = new PedidoMongoDbDataSource(mongoConnection, mongoDatabase);
-        IPaymentProcessorWebClient webClient = new MercadoPagoPaymentProcessorWebClient(paymentCallbackUrl);
-        PagamentoController controller = new PagamentoController(pedidoDataSource, pagamentoDataSource, webClient);
-
-        PagamentoEntity pagamento = controller.criarPagamento(dto);
+        PagamentoEntity pagamento = pagamentoController.criarPagamento(dto);
         return new ResponseEntity<>(pagamento, HttpStatus.CREATED);
     }
 
     @PostMapping("/callback")
     public ResponseEntity<PagamentoEntity> callback(@RequestBody CallbackPagamentoDto dto) {
-        IPagamentoDataSource pagamentoDataSource = new PagamentoMongoDbDataSource(mongoConnection, mongoDatabase);
-        IPedidoDataSource pedidoDataSource = new PedidoMongoDbDataSource(mongoConnection, mongoDatabase);
-        IPaymentProcessorWebClient webClient = new MercadoPagoPaymentProcessorWebClient(paymentCallbackUrl);
-        PagamentoController controller = new PagamentoController(pedidoDataSource, pagamentoDataSource, webClient);
-
-        PagamentoEntity pagamento = controller.pagamentoStatusCallback(dto.getExternalId());
+        PagamentoEntity pagamento = pagamentoController.pagamentoStatusCallback(dto.getExternalId());
         return new ResponseEntity<>(pagamento, HttpStatus.CREATED);
     }
 }

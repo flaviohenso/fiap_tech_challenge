@@ -19,25 +19,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/api/produtos")
 public class ProdutoHandler {
-    private final String mongoConnection;
-
-    private final String mongoDatabase;
+    private final ProdutoController produtoController;
 
     public ProdutoHandler(
             @Value("${mongo.connection}") String mongoConnection,
             @Value("${mongo.database}") String mongoDatabase) {
-        this.mongoConnection = mongoConnection;
-        this.mongoDatabase = mongoDatabase;
+        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
+        this.produtoController = new ProdutoController(dataSource);
     }
 
     @Operation(summary = "Cria novo produto",
             description = "Cria um novo produto na base de dados.")
     @PostMapping
     public ResponseEntity<ProdutoEntity> create(@RequestBody CriarProdutoDto dto) {
-        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
-        ProdutoController controller = new ProdutoController(dataSource);
-
-        ProdutoEntity produto = controller.cadastrarProduto(dto);
+        ProdutoEntity produto = produtoController.cadastrarProduto(dto);
         return new ResponseEntity<>(produto, HttpStatus.CREATED);
     }
 
@@ -45,33 +40,24 @@ public class ProdutoHandler {
     public ResponseEntity<List<ProdutoEntity>> getAll(
             @RequestParam(value = "categoria", required = false) String categoriaValue
     ) {
-        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
-        ProdutoController controller = new ProdutoController(dataSource);
-
         Categoria categoria = Optional.ofNullable(categoriaValue)
                 .map(String::toUpperCase)
                 .map(Categoria::valueOf)
                 .orElse(null);
 
-        List<ProdutoEntity> clientes = controller.buscarTodos(categoria);
+        List<ProdutoEntity> clientes = produtoController.buscarTodos(categoria);
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoEntity> getById(@PathVariable("id") String id) {
-        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
-        ProdutoController controller = new ProdutoController(dataSource);
-
-        ProdutoEntity produto = controller.buscarPorId(id);
+        ProdutoEntity produto = produtoController.buscarPorId(id);
         return ResponseEntity.ok().body(produto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
-        ProdutoController controller = new ProdutoController(dataSource);
-
-        controller.deletar(id);
+        produtoController.deletar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -82,10 +68,7 @@ public class ProdutoHandler {
             @PathVariable("id") String id,
             @RequestBody AtualizarProdutoDto dto
     ) {
-        IProdutoDataSource dataSource = new ProdutoMongoDbDataSource(mongoConnection, mongoDatabase);
-        ProdutoController controller = new ProdutoController(dataSource);
-
-        ProdutoEntity produto = controller.atualizar(id, dto);
+        ProdutoEntity produto = produtoController.atualizar(id, dto);
         return new ResponseEntity<>(produto, HttpStatus.OK);
     }
 }
