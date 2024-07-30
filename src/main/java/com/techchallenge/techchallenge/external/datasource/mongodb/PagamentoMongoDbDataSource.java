@@ -24,7 +24,7 @@ public class PagamentoMongoDbDataSource implements IPagamentoDataSource {
     public PagamentoMongoDbDataSource(String connectionString, String database) {
         this.client = MongoClients.create(connectionString);
         MongoDatabase mongoDatabase = client.getDatabase(database);
-        this.collection = mongoDatabase.getCollection("pedidos");
+        this.collection = mongoDatabase.getCollection("pagamentos");
     }
 
     @Override
