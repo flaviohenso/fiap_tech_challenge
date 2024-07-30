@@ -2,6 +2,7 @@ package com.techchallenge.techchallenge.adapters.gateway.pedido;
 
 import com.techchallenge.techchallenge.adapters.gateway.pedido.mapper.PedidoMapper;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
+import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
 import com.techchallenge.techchallenge.core.exceptions.InvalidPedidoException;
 import com.techchallenge.techchallenge.pkg.dto.pedido.PedidoDto;
 import com.techchallenge.techchallenge.pkg.interfaces.IPedidoDataSource;
@@ -38,5 +39,9 @@ public class PedidoGateway {
 
     public List<PedidoEntity> findAll() {
         return dataSource.findAll().stream().map(PedidoMapper::toPedidoEntity).toList();
+    }
+
+    public List<PedidoEntity> findAllInStatus(List<PedidoStatus> statuses) {
+        return dataSource.findAllInStatus(statuses).stream().map(PedidoMapper::toPedidoEntity).toList();
     }
 }

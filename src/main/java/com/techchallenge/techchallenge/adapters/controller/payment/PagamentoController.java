@@ -7,7 +7,6 @@ import com.techchallenge.techchallenge.core.entities.pagamento.ExternalPagamento
 import com.techchallenge.techchallenge.core.entities.pagamento.PagamentoEntity;
 import com.techchallenge.techchallenge.core.entities.pagamento.StatusPagamento;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
-import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
 import com.techchallenge.techchallenge.core.requests.CriarPagamentoDto;
 import com.techchallenge.techchallenge.core.usecases.PagamentoProcessorUseCase;
 import com.techchallenge.techchallenge.core.usecases.PagamentoUseCaseImpl;
@@ -39,11 +38,10 @@ public class PagamentoController {
         PagamentoGateway pagamentoGateway = new PagamentoGateway(pagamentoDataSource);
         PagamentoUseCaseImpl pagamentoUseCase = new PagamentoUseCaseImpl(pagamentoGateway);
         PagamentoEntity pagamento = pagamentoUseCase.callbackPagamento(externalId, status);
-
+        
         PedidoGateway pedidoGateway = new PedidoGateway(pedidoDataSource);
         PedidoUseCase pedidoUseCase = new PedidoUseCase(pedidoGateway);
-        pedidoUseCase.atualizarStatus(pagamento.getPedidoId(), PedidoStatus.RECEBIDO);
-
+        pedidoUseCase.atualizarStatusCallbackPagamento(pagamento.getPedidoId(), pagamento.getStatus());
         return pagamento;
     }
 

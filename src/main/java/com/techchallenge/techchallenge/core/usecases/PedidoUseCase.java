@@ -1,6 +1,7 @@
 package com.techchallenge.techchallenge.core.usecases;
 
 import com.techchallenge.techchallenge.adapters.gateway.pedido.PedidoGateway;
+import com.techchallenge.techchallenge.core.entities.pagamento.StatusPagamento;
 import com.techchallenge.techchallenge.core.entities.pedido.ComboEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoEntity;
 import com.techchallenge.techchallenge.core.entities.pedido.PedidoStatus;
@@ -10,8 +11,10 @@ import com.techchallenge.techchallenge.core.requests.pedido.CriarPedidoDto;
 import com.techchallenge.techchallenge.core.requests.pedido.CriarProdutoComboDto;
 
 import java.time.OffsetDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PedidoUseCase {
 
@@ -61,7 +64,38 @@ public class PedidoUseCase {
     }
 
     public List<PedidoEntity> buscarTodos() {
-        return pedidoGateway.findAll();
+        List<PedidoEntity> pedidos = pedidoGateway.findAllInStatus(List.of(
+                PedidoStatus.RECEBIDO,
+                PedidoStatus.EM_PREPARACAO,
+                PedidoStatus.PRONTO
+        ));
+
+        return pedidos.stream()
+                .sorted(Comparator
+                        .comparing(PedidoEntity::getStatus, Comparator.comparingInt(this::getStatusPriority))
+                        .thenComparing(PedidoEntity::getCreatedAt))
+                .collect(Collectors.toList());
+    }
+
+    private int getStatusPriority(PedidoStatus status) {
+        return switch (status) {
+            case PRONTO -> 1;
+            case EM_PREPARACAO -> 2;
+            case RECEBIDO -> 3;
+            default -> 4;
+        };
+    }
+
+    public PedidoEntity atualizarStatusCallbackPagamento(String id, StatusPagamento statusPagamento) {
+        PedidoEntity pedido = buscarPorId(id);
+
+        if (statusPagamento == StatusPagamento.APROVADO) {
+            pedido.setStatus(PedidoStatus.RECEBIDO);
+            pedido.setUpdatedAt(OffsetDateTime.now());
+
+            return pedidoGateway.atualizar(pedido);
+        }
+        return pedido;
     }
 
     public PedidoEntity atualizarStatus(String id, PedidoStatus status) {

@@ -17,15 +17,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/clientes")
 public class ClienteHandler {
-    private final String mongoConnection;
-
-    private final String mongoDatabase;
+    private final ClienteController controller;
 
     public ClienteHandler(
             @Value("${mongo.connection}") String mongoConnection,
             @Value("${mongo.database}") String mongoDatabase) {
-        this.mongoConnection = mongoConnection;
-        this.mongoDatabase = mongoDatabase;
+        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
+        this.controller = new ClienteController(dataSource);
     }
 
     @Operation(
@@ -34,9 +32,6 @@ public class ClienteHandler {
     )
     @PostMapping
     public ResponseEntity<ClienteEntity> create(@RequestBody CriarClienteDto dto) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
         ClienteEntity cliente = controller.cadastrarCliente(dto);
         return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
@@ -45,27 +40,18 @@ public class ClienteHandler {
     public ResponseEntity<List<ClienteEntity>> getAll(
             @RequestParam(value = "cpf", required = false) String cpf
     ) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
         List<ClienteEntity> clientes = controller.buscarTodos(cpf);
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteEntity> getById(@PathVariable("id") String id) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
         ClienteEntity cliente = controller.getById(id);
         return ResponseEntity.ok().body(cliente);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
         controller.deletar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -77,9 +63,6 @@ public class ClienteHandler {
             @PathVariable("id") String id,
             @RequestBody AtualizarClienteDto dto
     ) {
-        IClienteDataSource dataSource = new ClienteMongoDbDataSource(mongoConnection, mongoDatabase);
-        ClienteController controller = new ClienteController(dataSource);
-
         ClienteEntity cliente = controller.atualizar(id, dto);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
