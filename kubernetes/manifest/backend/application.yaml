@@ -4,7 +4,6 @@ metadata:
   name: application
   namespace: app
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: app

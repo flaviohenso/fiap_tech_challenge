@@ -10,7 +10,7 @@ data:
 
         @task(2)
         def listar_api(self):
-            self.client.get("/swagger-ui/index.html#/")
+            self.client.get("/swagger-ui/index.html#/ ")
 kind: ConfigMap
 metadata:
   name: locust-scripts
