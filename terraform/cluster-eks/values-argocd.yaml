@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: teste
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/flaviohenso/fiap_tech_challenge.git
+    targetRevision: feat/kubernetes
+    path: kubernetes/manifest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: account-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/flaviohenso/fiap_tech_challenge.git
+    targetRevision: feat/kubernetes
+    path: kubernetes/manifest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: account
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
