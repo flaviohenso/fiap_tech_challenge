@@ -64,6 +64,9 @@ docker compose up -d
 > Nossas Imagens docker estão sendo armazenadas no Docker Hub
 > Link do repositório [fiap_tech_challenge](https://hub.docker.com/repository/docker/pedrogimenezsilva/fiap_tech_challenge/general)
 
+## Arquitetura da aplicação
+
+![alt text](Documents/fiapdrawio.png)
 
 ## Swagger
 
