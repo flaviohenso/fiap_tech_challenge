@@ -5,3 +5,4 @@ metadata:
   namespace: app
 data:
   mongodb-uri: mongodb://mongodb-svc.database.svc.cluster.local/docker-db
+  
