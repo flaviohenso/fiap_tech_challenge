@@ -1,7 +1,17 @@
 spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
   application:
     name: techchallenge
   profiles:
     active: ${ENVIRONMENT:local}
 
 server.port: 8080
+
+server:
+  error:
+    include-stacktrace: never
+
+payment:
+  callback:
+    url: mydomain.sample.com/api/pagamentos/callback
