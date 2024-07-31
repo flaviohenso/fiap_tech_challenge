@@ -4,4 +4,4 @@ metadata:
   name: mongodb-config
   namespace: app
 data:
-  mongodb-uri: mongodb://mongodb-svc.database.svc.cluster.local:27017/docker-db
+  mongodb-uri: mongodb://mongodb-svc.database.svc.cluster.local:27017/mongodb/docker-db
