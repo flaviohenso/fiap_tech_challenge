@@ -80,7 +80,7 @@ A aplicação gera automaticamente um swagger com todos os endpoints disponívei
 ## Fluxo de pedido
 
 Os endpoints descritos abaixo junto dos endpoints de administração de clientes e produtos se encontram
-em: [Collection Postman](Documents/collection/Fiap projeto.postman_collection.json)
+em: [Collection Postman](https://github.com/flaviohenso/fiap_tech_challenge/blob/develop/Documents/collection/Fiap%20projeto.postman_collection.json)
 
 ### Criação de pedido
 
