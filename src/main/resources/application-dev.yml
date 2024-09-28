@@ -2,5 +2,5 @@ spring.data.mongodb.uri: mongodb://mongodb/docker-db
 server.port: 8081
 
 mongo:
-  connection: mongodb://mongodb
+  connection: mongodb://fiap:GcqbjvJR3jXm6gU0@my-documentdb-cluster.cluster-cpsw6q668tdw.us-east-1.docdb.amazonaws.com/?ssl=true&replicaSet=rs0&readpreference=secondaryPreferred&ssl=true&tlsAllowInvalidCertificates=true
   database: docker-db
