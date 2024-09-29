@@ -1,5 +1,5 @@
-spring.data.mongodb.uri: mongodb://localhost:27070/docker-db
+server.port: 8081
 
 mongo:
-  connection: mongodb://localhost:27070
-  database: docker-db
+  connection: mongodb://fiap:GcqbjvJR3jXm6gU0@my-documentdb-cluster.cluster-cpsw6q668tdw.us-east-1.docdb.amazonaws.com:27017/fiap?retryWrites=false
+  database: fiap
