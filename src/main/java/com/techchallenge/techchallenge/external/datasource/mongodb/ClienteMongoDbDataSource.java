@@ -20,7 +20,7 @@ public class ClienteMongoDbDataSource implements IClienteDataSource {
     public ClienteMongoDbDataSource(String connectionString, String database) {
         this.client = MongoClients.create(connectionString);
         MongoDatabase mongoDatabase = client.getDatabase(database);
-        this.collection = mongoDatabase.getCollection("pedidos");
+        this.collection = mongoDatabase.getCollection("clientes");
     }
 
     @Override
