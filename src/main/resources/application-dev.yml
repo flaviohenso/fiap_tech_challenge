@@ -1,6 +1,6 @@
-server.port: 8081
+server.port: 8080
 
 mongo:
-  connection: mongodb://fiap:GcqbjvJR3jXm6gU0@my-documentdb-cluster.cluster-cpsw6q668tdw.us-east-1.docdb.amazonaws.com:27017/fiap?retryWrites=false
+  connection: mongodb://fiap:qZ7zqQn1j4QVMd9i@mongodb-fiap-tech-challenge.cluster-cpsw6q668tdw.us-east-1.docdb.amazonaws.com:27017/fiap?retryWrites=false
   database: fiap
   
