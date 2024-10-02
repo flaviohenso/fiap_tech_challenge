@@ -358,3 +358,7 @@ Exemplo de resposta:
 O mesmo request acima é executado quando a cozinha finaliza o preparo e o cliente retira o pedido, alterando para os
 estados PRONTO e FINALIZADO respectivamente. Uma vez vez no estado FINALIZADO, o pedido deixa de aparecer no endpoint de
 pedidos aberto. 
+
+### Diagrama da infraestrutura do projeto na AWS
+
+![alt text](Documents/infraestrutura.png)
