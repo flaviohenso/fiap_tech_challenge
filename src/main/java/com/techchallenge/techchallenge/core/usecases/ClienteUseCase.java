@@ -6,10 +6,12 @@ import com.techchallenge.techchallenge.core.exceptions.ClienteNotFoundException;
 import com.techchallenge.techchallenge.core.exceptions.InvalidClienteException;
 import com.techchallenge.techchallenge.core.requests.cliente.AtualizarClienteDto;
 import com.techchallenge.techchallenge.core.requests.cliente.CriarClienteDto;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
+@Slf4j
 public class ClienteUseCase {
     private final ClienteGateway clienteGateway;
 
@@ -19,7 +21,10 @@ public class ClienteUseCase {
 
     public ClienteEntity criar(CriarClienteDto criarClienteDto) {
         List<ClienteEntity> clientesWithSameCpf = clienteGateway.findByCpf(criarClienteDto.getCpf());
-        if (clientesWithSameCpf != null) throw new InvalidClienteException("Cliente com o mesmo CPF já existe");
+
+        log.info("clientesWithSameCpf size: {}", clientesWithSameCpf.size());
+        if (clientesWithSameCpf != null && !clientesWithSameCpf.isEmpty())
+            throw new InvalidClienteException("Cliente com o mesmo CPF já existe");
 
         var cliente = toClienteEntity(criarClienteDto);
         return clienteGateway.criar(cliente);
