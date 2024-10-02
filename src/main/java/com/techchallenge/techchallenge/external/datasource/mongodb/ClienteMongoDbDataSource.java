@@ -35,7 +35,8 @@ public class ClienteMongoDbDataSource implements IClienteDataSource {
 
     @Override
     public List<ClienteDto> findByCpf(String cpf) {
-        Bson filter = cpf == null || cpf.isEmpty() ? new Document() : Filters.eq("cpf", cpf);
+        Bson filter = (cpf == null || cpf.isEmpty()) ? new Document() : Filters.eq("cpf", cpf);
+
         FindIterable<Document> docs = collection.find(filter);
         List<ClienteDto> clientes = new ArrayList<>();
         for (Document doc : docs) {
